@@ -141,6 +141,7 @@ module.exports = {
           cacheDirectory: true,
           presets: ['babel-preset-es2015', 'babel-preset-react', 'babel-preset-stage-0'],
           plugins: [
+            "transform-decorators-legacy",
             ['import', {
               libraryName: 'antd',
               style: "css"

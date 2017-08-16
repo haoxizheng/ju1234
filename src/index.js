@@ -5,10 +5,17 @@
  */
 import React from 'react';
 import {render} from 'react-dom';
+import {Provider} from 'mobx-react'
 // ==============================================================================================================
 import Root from './Router';
+import store from './store';
 // ======================== ======================================================================================
-import './index.less';
+import './style/index.less';
+import './style/default.css';
 
 
-render(<Root/>, document.getElementById('root'));
+render((
+  <Provider {...store}>
+    <Root/>
+  </Provider>
+), document.getElementById('root'));

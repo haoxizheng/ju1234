@@ -14,10 +14,10 @@ import lazyLoad from 'src/utils/lazyLoad';
 import * as pageUrls from 'src/config/pageUrls';
 
 // 主页
-const Home = lazyLoad(require('bundle-loader?lazy&name=HOME!../Pages/Home'));
+const Home = lazyLoad(require('bundle-loader?lazy&name=home!../Pages/Home'));
 
 // 登录
-const Login = lazyLoad(require('bundle-loader?lazy&name=Login!../Pages/Login'));
+const Login = lazyLoad(require('bundle-loader?lazy&name=login!../Pages/Login'));
 
 
 export default class Root extends Component{
@@ -37,3 +37,5 @@ export default class Root extends Component{
     )
   }
 }
+
+

@@ -3,10 +3,14 @@
  *
  * Created by jufei on 2017/6/12.
  */
-const
-  path = require('path'),
+const path = require('path'),
   express = require('express'),
-  webpack = require('webpack');
+  webpack = require('webpack'),
+  fs = require('fs');
+
+const routes = require('./routes'),
+  service = require('./service');
+
 
 app = express();
 
@@ -17,6 +21,13 @@ const isDeveloping = process.env.NODE_ENV === 'development';
 const port = isDeveloping ? 8080 : 80;
 
 
+// 数据接口
+service(app);
+
+
+global.session = {
+
+};
 /**
  * 开发模式： 使用webpack hot middleware
  * 生产模式： 直接发送打包好的文件
@@ -39,12 +50,25 @@ if (isDeveloping) {
   let mfs = devMiddleWare.fileSystem;
   let file = path.join(config.output.path, 'index.html');
 
-  app.get('*', function (req, res) {
+  app.get(routes, function (req, res) {
     devMiddleWare.waitUntilValid(function () {
       console.log('webpack.config begin work');
       let html = mfs.readFileSync(file);
       res.end(html)
     });
+  })
+} else {
+  app.get(routes, function (req, res, next) {
+    fs.readFile(
+      path.resolve(__dirname, './public/dist/index.html'),
+      'utf-8',
+      function (err, data) {
+        if (!err) {
+          res.end(data)
+        } else {
+          console.log(err)
+        }
+      })
   })
 }
 
