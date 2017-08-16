@@ -5,7 +5,8 @@
  * date：        2017/8/16
  */
 
+const loginService = require('./loginService');
 
 module.exports = function (app) {
-
+  loginService(app);
 };

@@ -6,12 +6,18 @@
  */
 
 import {action, computed, observable} from 'mobx';
+//===============================================================================
+import API from 'root/service/API';
+import ajax from 'src/utils/request';
 
 
 class LoginState {
   @observable account = '';
   @observable password = '';
-  @observable submitting = '';
+
+  constructor(){
+    this.submitting = false;
+  }
 
   @action changeAccount = (e) => {
     this.account = e.target.value;
@@ -21,8 +27,23 @@ class LoginState {
     this.password = e.target.value;
   };
 
-  @action submitHandle = (e) => {
-    console.log(this.account,this.password)
+  submitHandle = async (router) => {
+    if(this.submitting) return false;
+
+    this.submitting = true;
+
+    try {
+      const res = await ajax.Post(API.LOGIN,{
+        account: this.account,
+        password: this.password
+      });
+
+      this.submitting = false;
+      console.log(res.data)
+    }catch (err) {
+      this.submitting = false;
+      throw 'some error'
+    }
   }
 }
 

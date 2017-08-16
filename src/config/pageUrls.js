@@ -10,4 +10,5 @@
 export const HOME = '/';
 
 // 登录界面
-export const LOGIN = '/login';
+export const LOGIN = '/account/login';
+

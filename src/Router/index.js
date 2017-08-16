@@ -17,7 +17,7 @@ import * as pageUrls from 'src/config/pageUrls';
 const Home = lazyLoad(require('bundle-loader?lazy&name=home!../Pages/Home'));
 
 // 登录
-const Login = lazyLoad(require('bundle-loader?lazy&name=login!../Pages/Login'));
+const Account = lazyLoad(require('bundle-loader?lazy&name=account!../Pages/Account'));
 
 
 export default class Root extends Component{
@@ -28,10 +28,12 @@ export default class Root extends Component{
 
   render(){
     return (
-      <Router>
+      <Router
+
+      >
         <Switch>
           <Route exact path={pageUrls.HOME} component={Home}/>
-          <Route exact path={pageUrls.LOGIN} component={Login}/>
+          <Route exact path={pageUrls.LOGIN} component={Account}/>
         </Switch>
       </Router>
     )

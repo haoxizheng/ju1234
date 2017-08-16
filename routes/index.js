@@ -6,4 +6,4 @@
  */
 
 
-module.exports = ['/','/login'];
+module.exports = ['/','/account/*'];

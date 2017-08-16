@@ -6,7 +6,8 @@
 const path = require('path'),
   express = require('express'),
   webpack = require('webpack'),
-  fs = require('fs');
+  fs = require('fs'),
+  bodyParse = require('body-parser');
 
 const routes = require('./routes'),
   service = require('./service');
@@ -14,11 +15,12 @@ const routes = require('./routes'),
 
 app = express();
 
+app.use(bodyParse.json());
 
 // development or production
 const isDeveloping = process.env.NODE_ENV === 'development';
 // listen port
-const port = isDeveloping ? 8080 : 80;
+const port = isDeveloping ? 8888 : 80;
 
 
 // 数据接口

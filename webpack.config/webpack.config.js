@@ -35,7 +35,7 @@ let HappyPack = require('happypack'),
 module.exports = {
   // devtool: 'source-map',
   entry: [
-    // "babel-polyfill",
+    "babel-polyfill",
     './src/index.js',
   ],
   output: {
@@ -81,18 +81,6 @@ module.exports = {
           }, {
             loader: 'less-loader',
           }]
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            query: 'modules&localIdentName=[name]-[local]-[hash:base64:5]'
-          },
-          'postcss-loader',
-          'sass-loader'
-        ]
       },
       {
         test: /\.(png)|(jpg)|svg|jpeg|eot|woff|ttf|gif$/,
