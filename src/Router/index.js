@@ -9,9 +9,16 @@ import React,{Component} from 'react';
 import {BrowserRouter as Router, HashRouter, Link, Redirect, Route, Switch} from 'react-router-dom';
 import lazyLoad from 'src/utils/lazyLoad';
 //==============================================================================================================
-const Login = lazyLoad(require('bundle-loader?lazy&name=Login!../Pages/Login'));
+
 //==============================================================================================================
 import * as pageUrls from 'src/config/pageUrls';
+
+// 主页
+const Home = lazyLoad(require('bundle-loader?lazy&name=HOME!../Pages/Home'));
+
+// 登录
+const Login = lazyLoad(require('bundle-loader?lazy&name=Login!../Pages/Login'));
+
 
 export default class Root extends Component{
 
@@ -23,6 +30,7 @@ export default class Root extends Component{
     return (
       <Router>
         <Switch>
+          <Route exact path={pageUrls.HOME} component={Home}/>
           <Route exact path={pageUrls.LOGIN} component={Login}/>
         </Switch>
       </Router>

@@ -36,7 +36,7 @@ module.exports = {
   // devtool: 'source-map',
   entry: [
     // "babel-polyfill",
-    './src/pageUrls.js',
+    './src/index.js',
   ],
   output: {
     path: path.resolve('../public/dist'),

@@ -5,32 +5,28 @@
  */
 
 let baseConfig = require('./webpack.config'),
-    path = require('path'),
-    webpack = require('webpack'),
-    CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin'),
-    WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin'),
-    hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
+  path = require('path'),
+  webpack = require('webpack'),
+  CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin'),
+  WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin'),
+  hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 
 let developingConfig = baseConfig;
 
 
 developingConfig.entry.unshift(hotMiddlewareScript);
-developingConfig.output.publicPath =  '/dist/';
+developingConfig.output.publicPath = '/dist/';
 
-    developingConfig.devtool = 'source-map';
+developingConfig.devtool = 'source-map';
 developingConfig.plugins.push(
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new CaseSensitivePathsPlugin(),
-    new WatchMissingNodeModulesPlugin(path.resolve('node_modules'))
-    // ,
-    // new webpack.DllReferencePlugin({
-    //   context: __dirname,
-    //   manifest: require('../static/dist/common-manifest.json')
-    // })
+  new webpack.DefinePlugin({
+    "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
+  }),
+  new webpack.HotModuleReplacementPlugin(),
+  new CaseSensitivePathsPlugin(),
+  new WatchMissingNodeModulesPlugin(path.resolve('node_modules'))
+
 );
 
 module.exports = developingConfig;

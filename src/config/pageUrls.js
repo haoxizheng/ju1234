@@ -6,4 +6,8 @@
  */
 
 
+// 主页
+export const HOME = '/';
+
+// 登录界面
 export const LOGIN = '/login';
