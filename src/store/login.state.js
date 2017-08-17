@@ -16,7 +16,7 @@ class LoginState {
   @observable account = '';
   @observable password = '';
 
-  constructor(){
+  constructor() {
     this.submitting = false;
   }
 
@@ -28,28 +28,45 @@ class LoginState {
     this.password = e.target.value;
   };
 
-  @action submitHandle = async (router) => {
-    if(this.submitting) return false;
+  @action submitHandle = async (router, message) => {
+    if (this.submitting) return false;
+    const isPass = this.validity(message);
+    if(!isPass) return false;
 
     this.submitting = true;
 
     try {
-      const res = await ajax.Post(API.LOGIN,{
+      const res = await ajax.Post(API.LOGIN, {
         account: this.account,
         password: this.password
       });
 
-      if( res.data.code === 200){
-        console.log(router);
-        router.history.push(pageUrls.HOME);
+      if (res.data.code === 200) {
+        message.success('登录成功',() => {
+          router.history.push(pageUrls.HOME)
+        });
+      }else {
+        message.error(res.data.message);
       }
 
       this.submitting = false;
       console.log(res.data)
-    }catch (err) {
+    } catch (err) {
       this.submitting = false;
-      throw 'some error'
+      throw err;
     }
+  };
+
+
+  validity(message){
+    if(this.account === ''){
+      message.error('账户名不得为空');
+      return false;
+    }else if(this.password === ''){
+      message.error('密码不得为空');
+      return false;
+    }
+    return true;
   }
 }
 

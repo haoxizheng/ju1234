@@ -10,44 +10,33 @@ import store from '../store';
 const {messageState} = store;
 
 
-console.log('messageState', messageState);
-
-// 参数验证
-function validityArguments(message, time) {
-  if (message === undefined)
-    throw 'argument can not be empty';
-  else if (message === '')
-    throw 'message length must be greater than 0';
-  else if (Object.prototype.toString.call(time) !== '[object Number]')
-    throw 'time must be the number type';
-
+// 添加message
+function addMessage(type) {
+  return function () {
+    const message = arguments[0];
+    if(arguments.length === 1){
+      messageState.addMessage(message,type)
+    }else if(arguments.length === 2){
+      if(/^\d+$/.test(arguments[1])){
+        messageState.addMessage(message,type,parseInt(arguments[1]))
+      }else if(Object.prototype.toString.call(arguments[1]) === '[object Function]'){
+        messageState.addMessage(message,type,1500,arguments[1])
+      }else {
+        throw 'arguments type error'
+      }
+    }else if(arguments.length === 3){
+      if(/^\d+$/.test(arguments[1]) && Object.prototype.toString.call(arguments[2]) === '[object Function]'){
+        messageState.addMessage(message,type,arguments[1],arguments[2])
+      }else {
+        throw 'arguments type error'
+      }
+    }
+  }
 }
-
-
-function success(message, time) {
-  validityArguments(message, time);
-  messageState.addMessage(message,'success',time);
-}
-
-function info(message, time) {
-  validityArguments(message, time);
-  messageState.addMessage(message,'info',time);
-}
-
-function error(message, time) {
-  validityArguments(message, time);
-  messageState.addMessage(message,'error',time);
-}
-
-function warn(message, time) {
-  validityArguments(message, time);
-  messageState.addMessage(message,'warn',time);
-}
-
 
 export default {
-  success,
-  info,
-  error,
-  warn
+  success: addMessage('success'),
+  info: addMessage('info'),
+  error: addMessage('error'),
+  warn: addMessage('warn')
 }

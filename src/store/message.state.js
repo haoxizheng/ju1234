@@ -28,7 +28,7 @@ class MessageState {
   }
 
   // 添加消息提示
-  @action addMessage = (message, type = 'success', time = 1000) => {
+  @action addMessage = (message, type = 'success', time = 1500,callback) => {
     this.messageList.push({
       message,
       type: type,
@@ -36,13 +36,14 @@ class MessageState {
       id: this.id
     });
 
-    setTimeout(this.clearMessage.bind(this,this.id),time);
+    setTimeout(this.clearMessage.bind(this,this.id,callback),time);
     this.id++;
   };
 
   // 移除消息提示
-  @action clearMessage = (id) => {
-    this.messageList = this.messageList.filter(message => message.id !== id)
+  @action clearMessage = (id,callback) => {
+    this.messageList = this.messageList.filter(message => message.id !== id);
+    if(callback) callback();
   }
 }
 

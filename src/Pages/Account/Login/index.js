@@ -5,6 +5,8 @@
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
 //========================================================================
+import message from 'src/utils/message';
+//========================================================================
 import './login-form.less';
 
 function mapPropsToState(store) {
@@ -21,7 +23,7 @@ class Login extends Component {
   };
 
   submitHandle = () => {
-    this.props.loginState.submitHandle(this.context.router)
+    this.props.loginState.submitHandle(this.context.router,message)
   };
 
   render() {
