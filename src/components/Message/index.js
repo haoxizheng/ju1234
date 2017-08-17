@@ -6,10 +6,19 @@
  */
 
 import React, {Component} from 'react';
-//===============================================================
 
-export default class index extends Component {
+//===============================================================
+import './message.less';
+
+
+
+
+export default class Message extends Component {
   render() {
-    return <div>index</div>
+    return (
+      <ul className="message">
+
+      </ul>
+    )
   }
 }
