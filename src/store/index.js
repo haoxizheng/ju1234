@@ -9,7 +9,10 @@
 // 登录
 import loginState from './login.state';
 
+// Message 组件
+import messageState from './message.state';
 
 export default {
-  loginState
+  loginState,
+  messageState
 }

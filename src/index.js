@@ -14,6 +14,7 @@ import './style/index.less';
 import './style/default.css';
 
 
+import './utils/message'
 render((
   <Provider {...store}>
     <Root/>
