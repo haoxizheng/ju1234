@@ -16,12 +16,12 @@ function mapPropsToState(store) {
 @inject(mapPropsToState)
 @observer
 class Login extends Component {
-  static contextTyps = {
+  static contextTypes = {
     router: React.PropTypes.object.isRequired
   };
 
   submitHandle = () => {
-    this.props.loginState.submitHandle(this.props.router)
+    this.props.loginState.submitHandle(this.context.router)
   };
 
   render() {

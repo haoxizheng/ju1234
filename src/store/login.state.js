@@ -7,6 +7,7 @@
 
 import {action, computed, observable} from 'mobx';
 //===============================================================================
+import * as pageUrls from 'src/config/pageUrls';
 import API from 'root/service/API';
 import ajax from 'src/utils/request';
 
@@ -27,7 +28,7 @@ class LoginState {
     this.password = e.target.value;
   };
 
-  submitHandle = async (router) => {
+  @action submitHandle = async (router) => {
     if(this.submitting) return false;
 
     this.submitting = true;
@@ -37,6 +38,11 @@ class LoginState {
         account: this.account,
         password: this.password
       });
+
+      if( res.data.code === 200){
+        console.log(router);
+        router.history.push(pageUrls.HOME);
+      }
 
       this.submitting = false;
       console.log(res.data)
