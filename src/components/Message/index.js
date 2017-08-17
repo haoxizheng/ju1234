@@ -37,7 +37,12 @@ export default class Message extends Component {
           messageList.map( item => {
             return (
               <li key={item.id}>
-                <span className={item.type}>
+                <span
+                  className={item.type + ' message-item'}
+                  style={{
+                    opacity: item.removing ? 0 : 1
+                  }}
+                >
                   {
                     item.message
                   }

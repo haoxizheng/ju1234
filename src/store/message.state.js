@@ -13,11 +13,6 @@ import {action, computed, observable} from 'mobx';
  *  text time
  *  type: error success info warn
  *
- *  {
- *    type: 'warn',
- *    time: 1500,
- *    message: 'some message'
- *  }
  */
 class MessageState {
   @observable messageList = [];
@@ -39,18 +34,28 @@ class MessageState {
       message,
       type: type,
       time: time,
-      id: this.id
+      id: this.id,
+      removing: false
     });
-
     this.messageList.reverse();
-
-    setTimeout(this.clearMessage.bind(this,this.id,callback),time);
+    setTimeout(this.clearMessage.bind(this,this.id,callback),time - 300);
     this.id++;
   };
 
   // 移除消息提示
   @action clearMessage = (id,callback) => {
-    this.messageList = this.messageList.filter(message => message.id !== id);
+    let index;
+
+    for( let i = 0;i< this.messageList.length;i++){
+      if(this.messageList[i].id === id){
+        index = i;
+        this.messageList[i].removing = true;
+      }
+    }
+    setTimeout(() => {
+      this.messageList = this.messageList.filter( item => item.id !== id)
+    },300);
+
     if(callback) callback();
   }
 }
