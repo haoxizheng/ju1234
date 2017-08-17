@@ -25,16 +25,24 @@ class MessageState {
 
   constructor() {
     this.id = 0;
+    this.height = document.body.clientHeight || document.documentElement.clientHeight;
+  }
+
+  @computed get bottom(){
+    const length = this.messageList.length;
+    return (this.height - length * 50 ) + 'px';
   }
 
   // 添加消息提示
-  @action addMessage = (message, type = 'success', time = 1500,callback) => {
+  @action addMessage = (message, type = 'success', time = 2000,callback) => {
     this.messageList.push({
       message,
       type: type,
       time: time,
       id: this.id
     });
+
+    this.messageList.reverse();
 
     setTimeout(this.clearMessage.bind(this,this.id,callback),time);
     this.id++;

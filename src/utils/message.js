@@ -20,7 +20,7 @@ function addMessage(type) {
       if(/^\d+$/.test(arguments[1])){
         messageState.addMessage(message,type,parseInt(arguments[1]))
       }else if(Object.prototype.toString.call(arguments[1]) === '[object Function]'){
-        messageState.addMessage(message,type,1500,arguments[1])
+        messageState.addMessage(message,type,2000,arguments[1])
       }else {
         throw 'arguments type error'
       }

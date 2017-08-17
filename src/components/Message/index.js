@@ -20,22 +20,28 @@ function mapPropsToState(store) {
 @inject(mapPropsToState)
 @observer
 export default class Message extends Component {
+
+
+
+
   render() {
-    const {messageList} = this.props.messageState;
+    const {messageList,bottom} = this.props.messageState;
 
     messageList.map( item => {
       console.log(item)
     });
 
     return (
-      <ul className="message">
+      <ul className="message" style={{bottom: bottom}}>
         {
           messageList.map( item => {
             return (
-              <li key={item.id} className={item.type}>
-                {
-                  item.message
-                }
+              <li key={item.id}>
+                <span className={item.type}>
+                  {
+                    item.message
+                  }
+                </span>
               </li>
             )
           })
