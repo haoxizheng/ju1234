@@ -1,86 +1,93 @@
 /**
- * 文件说明： server
- *
- * Created by jufei on 2017/6/12.
+ * intro：       koaServer
+ * description： koaServer
+ * author：      jufei
+ * date：        2017/8/18
  */
-const path = require('path'),
-  express = require('express'),
-  webpack = require('webpack'),
+
+
+const Koa = require('koa'),
+  path = require('path'),
+
   fs = require('fs'),
-  bodyParse = require('body-parser');
-
-const routes = require('./routes'),
-  service = require('./service');
-
-
-app = express();
-
-app.use(bodyParse.json());
-
-// development or production
-const isDeveloping = process.env.NODE_ENV === 'development';
-// listen port
-const port = isDeveloping ? 8080 : 80;
+  routes = require('./routes'),
+  router = require('koa-router')(),
+  staticFile = require('koa-static');
 
 
-// 数据接口
-service(app);
+const app = new Koa();
+
+// 环境变量
+const isDevelopment = process.env.NODE_ENV === 'development';
+const port = isDevelopment ? 8088 : 8088;
+
+// 静态资源
+app.use(staticFile(path.resolve(__dirname, './public/')));
+
+// 404页面处理
+app.use(async (ctx, next) => {
+  await next();
+  if (ctx.body === undefined) {
+    ctx.body = '404'
+  }
+});
+
+// log
+app.use(async (ctx, next) => {
+  console.log('log', ctx.request.url);
+  next();
+});
 
 
-global.session = {
-
-};
 /**
  * 开发模式： 使用webpack hot middleware
  * 生产模式： 直接发送打包好的文件
  */
-if (isDeveloping) {
+if (isDevelopment) {
+  const webpack = require('webpack');
+  const {devMiddleware, hotMiddleware} = require('koa-webpack-middleware');
+
   let config = require('./webpack.config/webpack.config.dev');
-  let compiler = webpack(config);
-  let devMiddleWare = require('webpack-dev-middleware')(compiler, {
-    publicPath: '/dist',
+  const compiler = webpack(config);
+
+  let webpackDevMiddlewera = devMiddleware(compiler, {
+    publicPath: config.output.publicPath,
     stats: {
       colors: true,
       modules: false,
       children: false,
       chunks: false,
       chunkModules: false
-    }
+    },
   });
-  app.use(devMiddleWare);
-  app.use(require('webpack-hot-middleware')(compiler));
-  let mfs = devMiddleWare.fileSystem;
-  let file = path.join(config.output.path, 'index.html');
 
-  app.get(routes, function (req, res) {
-    devMiddleWare.waitUntilValid(function () {
-      console.log('webpack.config begin work');
-      let html = mfs.readFileSync(file);
-      res.end(html)
+  app.use(webpackDevMiddlewera);
+  app.use(hotMiddleware(compiler));
+
+  router.get(routes, async (ctx, next) => {
+    const mfs = webpackDevMiddlewera.fileSystem,
+      filePath = path.join(config.output.path, 'index.html');
+
+    webpackDevMiddlewera.waitUntilValid(function () {
+      const html = mfs.readFileSync(filePath);
+      ctx.type = 'html';
+      ctx.body = html;
     });
-  })
+  });
+
 } else {
-  app.get(routes, function (req, res, next) {
-    fs.readFile(
-      path.resolve(__dirname, './public/dist/index.html'),
-      'utf-8',
-      function (err, data) {
-        if (!err) {
-          res.end(data)
-        } else {
-          console.log(err)
-        }
-      })
-  })
+  router.get(routes, async (ctx, next) => {
+    ctx.response.type = 'html';
+    ctx.body = fs.createReadStream(path.resolve(__dirname, './public/dist/index.html'))
+  });
 }
 
-/**
- * 服务开启
- */
-app.listen(port, function (err) {
-  if (!err) {
-    console.log(`server start at ${port}`)
-  } else {
-    console.log('err', err)
-  }
+// 路由挂载
+app.use(router.routes());
+
+
+
+
+app.listen(port, _ => {
+  console.log(`server start at ${port}`)
 });
