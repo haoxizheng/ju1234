@@ -5,10 +5,16 @@
  * date：        2017/8/16
  */
 
+const service = require('koa-router')();
+
+
 // 账号相关
 const accountService = require('./account');
 
 
-module.exports = function (app) {
-  accountService(app);
+module.exports = function () {
+  accountService(service);
+
+
+  return service.routes()
 };

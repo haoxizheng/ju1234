@@ -8,11 +8,13 @@
 
 const Koa = require('koa'),
   path = require('path'),
-
   fs = require('fs'),
-  routes = require('./routes'),
   router = require('koa-router')(),
-  staticFile = require('koa-static');
+  staticFile = require('koa-static'),
+  bodyParser = require('koa-bodyparser');
+
+const routes = require('./routes'),
+  service = require('./service');
 
 
 const app = new Koa();
@@ -24,6 +26,8 @@ const port = isDevelopment ? 8088 : 8088;
 // 静态资源
 app.use(staticFile(path.resolve(__dirname, './public/')));
 
+app.use(bodyParser());
+
 // 404页面处理
 app.use(async (ctx, next) => {
   await next();
@@ -33,10 +37,10 @@ app.use(async (ctx, next) => {
 });
 
 // log
-app.use(async (ctx, next) => {
-  console.log('log', ctx.request.url);
-  next();
-});
+// app.use(async (ctx, next) => {
+//   console.log('log', ctx.request.url);
+//   next();
+// });
 
 
 /**
@@ -85,8 +89,8 @@ if (isDevelopment) {
 // 路由挂载
 app.use(router.routes());
 
-
-
+// 接口挂载
+app.use(service());
 
 app.listen(port, _ => {
   console.log(`server start at ${port}`)
