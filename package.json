@@ -37,9 +37,7 @@
     "react-dev-utils": "^0.5.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.8",
-    "webpack": "^2.6.1",
-    "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.17.1"
+    "webpack": "^2.6.1"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -48,14 +46,10 @@
     "body-parser": "^1.17.2",
     "bundle-loader": "^0.5.5",
     "colors": "^1.1.2",
-    "eventsource-polyfill": "^0.9.6",
     "express": "^4.15.3",
     "koa": "^2.3.0",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
-    "koa-trie-router": "^2.1.5",
-    "koa-webpack-dev-middleware": "^2.0.1",
-    "koa-webpack-hot-middleware": "^1.0.3",
     "koa-webpack-middleware": "^1.0.7",
     "mobx": "^3.2.2",
     "mobx-react": "^4.2.2",
