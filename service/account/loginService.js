@@ -24,7 +24,7 @@ module.exports = function (app) {
           })
         }else {
           res.json({
-            code: 403,
+            code: 400,
             message: '账户与密码不匹配'
           })
         }

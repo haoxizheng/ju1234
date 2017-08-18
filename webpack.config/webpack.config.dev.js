@@ -25,8 +25,8 @@ developingConfig.plugins.push(
   }),
   new webpack.HotModuleReplacementPlugin(),
   new CaseSensitivePathsPlugin(),
-  new WatchMissingNodeModulesPlugin(path.resolve('node_modules'))
-
+  new WatchMissingNodeModulesPlugin(path.resolve('node_modules')),
+  new webpack.optimize.OccurrenceOrderPlugin()
 );
 
 module.exports = developingConfig;

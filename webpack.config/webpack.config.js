@@ -36,6 +36,8 @@ module.exports = {
   // devtool: 'source-map',
   entry: [
     "babel-polyfill",
+    'eventsource-polyfill',
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './src/index.js',
   ],
   output: {
@@ -135,6 +137,11 @@ module.exports = {
               style: "css"
             }]
           ],
+          env: {
+            'development': {
+              'presets': ['react-hmre']
+            }
+          }
         },
       }]
     }),
