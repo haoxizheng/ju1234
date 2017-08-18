@@ -12,7 +12,6 @@ const API = require('../API'),
 module.exports = function (app) {
   app.post(API.LOGIN,function (req,res,next) {
     const {account,password} = req.body;
-    console.log('sql',`SELECT password FROM ${tableNames.TB_USER} WHERE email=\`${account}\` OR phone=\`${account}\`;`)
     mysql(`SELECT password FROM ${tableNames.TB_USER} WHERE email="${account}" OR phone="${account}";`)
       .then( data => {
         if(data.some( item => item.password == password)){
