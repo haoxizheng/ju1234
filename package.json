@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "export NODE_ENV=development&& node server.js",
-    "build": "export NODE_ENV=production&& webpack --config ./webpack.config/webpack.config.prod.js"
+    "build": "export NODE_ENV=production&& webpack --config ./webpack.config/webpack.config.prod.js",
+    "service": "node serviceServer.js"
   },
   "author": "",
   "license": "ISC",
@@ -47,7 +48,8 @@
     "colors": "^1.1.2",
     "express": "^4.15.3",
     "koa": "^2.3.0",
-    "koa-bodyparser": "^4.2.0",
+    "koa-better-http-proxy": "^0.2.3",
+    "koa-proxy": "^0.8.0",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
     "koa-webpack-middleware": "^1.0.7",

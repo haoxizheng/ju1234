@@ -11,10 +11,15 @@ const Koa = require('koa'),
   fs = require('fs'),
   router = require('koa-router')(),
   staticFile = require('koa-static'),
-  bodyParser = require('koa-bodyparser');
+  bodyParser = require('koa-bodyparser'),
+  proxy = require('koa-better-http-proxy');
 
-const routes = require('./routes'),
-  service = require('./service');
+// const httpsProxyAgent = require('https-proxy-agent');
+
+
+const service = require('./service');
+
+const routes = require('./routes');
 
 
 const app = new Koa();
@@ -23,10 +28,12 @@ const app = new Koa();
 const isDevelopment = process.env.NODE_ENV === 'development';
 const port = isDevelopment ? 8088 : 8088;
 
+app.use(bodyParser());
+
+
+
 // 静态资源
 app.use(staticFile(path.resolve(__dirname, './public/')));
-
-app.use(bodyParser());
 
 // 404页面处理
 app.use(async (ctx, next) => {
@@ -41,7 +48,6 @@ app.use(async (ctx, next) => {
 //   console.log('log', ctx.request.url);
 //   next();
 // });
-
 
 /**
  * 开发模式： 使用webpack hot middleware
@@ -86,11 +92,25 @@ if (isDevelopment) {
   });
 }
 
+// app.use(service());
+
+
 // 路由挂载
 app.use(router.routes());
 
-// 接口挂载
-app.use(service());
+// 接口转发
+const proxyHost = 'http://localhost:8089/';
+app.use(proxy(proxyHost, {
+  filter: ctx => {
+    const isPass = /^\/api\/?/.test(ctx.url);
+    if(isPass) console.log('proxy:' + ctx.url + ' => ' + proxyHost + ctx.url)
+    return isPass
+  },
+  // proxyReqPathResolver: (req, res) => {
+  //   return '/api' + req.url.replace('/point/api','');
+  // }
+}));
+
 
 app.listen(port, _ => {
   console.log(`server start at ${port}`)
