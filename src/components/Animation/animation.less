@@ -1,0 +1,19 @@
+.page-animation{
+  &-appear{
+    transform: translate(0px, -100%);
+  }
+
+  &-appear-active{
+    transform: translate(0px, 0px);
+    transition: all 1s;
+  }
+
+  &-leave{
+    transform: translate(0px, 0px);
+  }
+
+  &-leave-active {
+    transform: translate(0px, -100%);
+    transition: all 1s;
+  }
+}

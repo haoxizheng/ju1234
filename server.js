@@ -11,13 +11,11 @@ const Koa = require('koa'),
   fs = require('fs'),
   router = require('koa-router')(),
   staticFile = require('koa-static'),
-  bodyParser = require('koa-bodyparser'),
   proxy = require('koa-better-http-proxy');
 
 // const httpsProxyAgent = require('https-proxy-agent');
 
 
-const service = require('./service');
 
 const routes = require('./routes');
 
@@ -28,7 +26,6 @@ const app = new Koa();
 const isDevelopment = process.env.NODE_ENV === 'development';
 const port = isDevelopment ? 8088 : 8088;
 
-app.use(bodyParser());
 
 
 
@@ -92,7 +89,6 @@ if (isDevelopment) {
   });
 }
 
-// app.use(service());
 
 
 // 路由挂载

@@ -20,10 +20,12 @@ class LoginState {
     this.submitting = false;
   }
 
+  // 账户输入框 change事件
   @action changeAccount = (e) => {
     this.account = e.target.value;
   };
 
+  // 密码输入框 change事件
   @action changePassword = (e) => {
     this.password = e.target.value;
   };

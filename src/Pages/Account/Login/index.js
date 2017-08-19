@@ -35,7 +35,7 @@ class Login extends Component {
 
   render() {
     const {
-      account, password, submitHandle,
+      account, password,
       changeAccount, changePassword
     } = this.props.loginState;
     return (

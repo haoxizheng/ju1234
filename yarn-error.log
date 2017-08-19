@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn remove koa-bodyparser
+  /usr/local/bin/node /usr/local/bin/yarn add koa-proxy: ^0.8.0,
 
 PATH: 
   /Library/Frameworks/Python.framework/Versions/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin
@@ -65,7 +65,6 @@ npm manifest:
       "express": "^4.15.3",
       "koa": "^2.3.0",
       "koa-better-http-proxy": "^0.2.3",
-      "koa-proxy": "^0.8.0",
       "koa-router": "^7.2.1",
       "koa-static": "^4.0.1",
       "koa-webpack-middleware": "^1.0.7",
@@ -5063,4 +5062,14 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: EEXIST: file already exists, mkdir '/Users/jufei/workspace/web/myself/ju1234/node_modules/koa-proxy'
+  Error: koa-proxy:: Invalid URI "koa-proxy:/"
+      at Request.init (/usr/local/lib/node_modules/yarn/node_modules/.2.81.0@request/request.js:276:31)
+      at new Request (/usr/local/lib/node_modules/yarn/node_modules/.2.81.0@request/request.js:130:8)
+      at request (/usr/local/lib/node_modules/yarn/node_modules/.2.81.0@request/index.js:54:10)
+      at RequestManager.execute (/usr/local/lib/node_modules/yarn/lib/util/request-manager.js:371:17)
+      at RequestManager.shiftQueue (/usr/local/lib/node_modules/yarn/lib/util/request-manager.js:398:10)
+      at Promise (/usr/local/lib/node_modules/yarn/lib/util/request-manager.js:175:12)
+      at Promise (<anonymous>)
+      at RequestManager.request (/usr/local/lib/node_modules/yarn/lib/util/request-manager.js:173:21)
+      at NpmRegistry.request (/usr/local/lib/node_modules/yarn/lib/registries/npm-registry.js:126:32)
+      at /usr/local/lib/node_modules/yarn/lib/resolvers/registries/npm-resolver.js:111:54
