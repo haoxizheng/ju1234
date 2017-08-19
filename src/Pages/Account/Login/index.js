@@ -22,8 +22,15 @@ class Login extends Component {
     router: React.PropTypes.object.isRequired
   };
 
+  // 按下键盘enter事件
+  keyDownHandle = (e) => {
+    if(e.keyCode === 13){
+      this.props.loginState.submitHandle(this.context.router, message)
+    }
+  };
+
   submitHandle = () => {
-    this.props.loginState.submitHandle(this.context.router,message)
+    this.props.loginState.submitHandle(this.context.router, message)
   };
 
   render() {
@@ -32,7 +39,7 @@ class Login extends Component {
       changeAccount, changePassword
     } = this.props.loginState;
     return (
-      <form className="login-form">
+      <form className="login-form" onKeyDown={this.keyDownHandle}>
         <div className="ju-logo"><img src="#" alt=""/></div>
         <h3>ju1234</h3>
         <input
