@@ -6,7 +6,8 @@
  */
 
 import React, {Component} from 'react';
-import {observer,inject} from 'mobx-react';
+import {inject, observer} from 'mobx-react';
+import Animation from '../Animation';
 //===============================================================
 import messageState from './message.state';
 import './message.less';
@@ -23,28 +24,30 @@ function mapPropsToState() {
 export default class Message extends Component {
 
   render() {
-    const {messageList,bottom} = this.props.messageState;
+    const {messageList} = this.props.messageState;
 
     return (
-      <ul className="message" style={{bottom: bottom}}>
-        {
-          messageList.map( item => {
-            return (
-              <li key={item.id}>
-                <span
-                  className={item.type + ' message-item'}
-                  style={{
-                    opacity: item.removing ? 0 : 1
-                  }}
-                >
-                  {
-                    item.message
-                  }
-                </span>
-              </li>
-            )
-          })
-        }
+      <ul className="message">
+        <Animation>
+          {
+            messageList.map(item => {
+              return (
+                <li key={item.id} style={{top: item.top}}>
+                  <span
+                    className={item.type + ' message-item'}
+                    style={{
+                      opacity: item.removing ? 0 : 1
+                    }}
+                  >
+                    {
+                      item.message
+                    }
+                  </span>
+                </li>
+              )
+            })
+          }
+        </Animation>
       </ul>
     )
   }

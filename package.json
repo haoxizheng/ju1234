@@ -60,6 +60,7 @@
     "react-addons-css-transition-group": "^15.6.0",
     "react-dom": "^15.5.4",
     "react-router-dom": "^4.1.2",
+    "rxjs": "^5.4.3",
     "webpack": "^2.6.1"
   },
   "repository": {

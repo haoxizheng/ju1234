@@ -1,3 +1,5 @@
+@import "../../style/index";
+
 .page-animation{
   &-appear{
     transform: translate(0px, -100%);
@@ -5,15 +7,24 @@
 
   &-appear-active{
     transform: translate(0px, 0px);
-    transition: all 1s;
+    transition: all @animation_enter_time;
+  }
+
+  &-enter{
+    transform: translate(-100%, 0);
+  }
+
+  &-enter-active {
+    transform: translate(0px, 0px);
+    transition: all @animation_enter_time;
   }
 
   &-leave{
-    transform: translate(0px, 0px);
+    opacity: 1;
   }
 
   &-leave-active {
-    transform: translate(0px, -100%);
-    transition: all 1s;
+    opacity: 0;
+    transition: all @animation_leave_time;
   }
 }

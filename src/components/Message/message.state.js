@@ -5,7 +5,6 @@
  * date：        2017/8/17
  */
 
-
 import {action, computed, observable} from 'mobx';
 
 
@@ -17,49 +16,34 @@ import {action, computed, observable} from 'mobx';
 class MessageState {
   @observable messageList = [];
 
-
   constructor() {
     this.id = 0;
+    this.count = 0;
     this.height = document.body.clientHeight || document.documentElement.clientHeight;
   }
 
-  @computed get bottom(){
-    const length = this.messageList.length;
-    return (this.height - length * 50 ) + 'px';
-  }
 
   // 添加消息提示
-  @action addMessage = (message, type = 'success', time = 2000,callback) => {
+  @action addMessage = (message, type = 'success', time = 2000, callback) => {
+    this.count = this.messageList.length > 0 ? this.count + 1 : 0;
     this.messageList.push({
       message,
       type: type,
       time: time,
       id: this.id,
-      removing: false
+      removing: false,
+      top: this.count * 50 + 'px'
     });
-    this.messageList.reverse();
-    setTimeout(this.clearMessage.bind(this,this.id,callback),time - 300);
+    setTimeout(this.clearMessage.bind(this, this.id, callback), time);
     this.id++;
   };
 
   // 移除消息提示
-  @action clearMessage = (id,callback) => {
-    let index;
-
-    for( let i = 0;i< this.messageList.length;i++){
-      if(this.messageList[i].id === id){
-        index = i;
-        this.messageList[i].removing = true;
-      }
-    }
-    setTimeout(() => {
-      this.messageList = this.messageList.filter( item => item.id !== id)
-    },300);
-
-    if(callback) callback();
+  @action clearMessage = (id, callback) => {
+    this.messageList = this.messageList.filter(item => item.id !== id);
+    if (callback) callback();
   }
 }
-
 
 
 export default new MessageState();

@@ -16,10 +16,11 @@ export default class index extends Component {
       <ReactCSSTransitionGroup
         transitionName="page-animation"
         transitionAppear={true}
-        transitionAppearTimeout={1000}
-        transitionEnter={false}
+        transitionAppearTimeout={700}
+        transitionEnter={true}
+        transitionEnterTimeout={700}
         transitionLeave={true}
-        transitionLeaveTimeout={1000}
+        transitionLeaveTimeout={700}
       >
         {this.props.children}
       </ReactCSSTransitionGroup>

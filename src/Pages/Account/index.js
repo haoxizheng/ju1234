@@ -28,6 +28,14 @@ export default class Account extends Component {
     })
   }
 
+
+  componentWillUnmount(){
+    console.log(1111)
+    this.setState({
+      show: false
+    })
+  }
+
   render() {
     return (
       <Animation>
