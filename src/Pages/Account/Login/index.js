@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
 //========================================================================
-import message from 'src/utils/message';
+// import message from 'src/utils/message';
 //========================================================================
 import './login-form.less';
 
@@ -25,12 +25,12 @@ class Login extends Component {
   // 按下键盘enter事件
   keyDownHandle = (e) => {
     if(e.keyCode === 13){
-      this.props.loginState.submitHandle(this.context.router, message)
+      this.props.loginState.submitHandle(this.context.router)
     }
   };
 
   submitHandle = () => {
-    this.props.loginState.submitHandle(this.context.router, message)
+    this.props.loginState.submitHandle(this.context.router)
   };
 
   render() {

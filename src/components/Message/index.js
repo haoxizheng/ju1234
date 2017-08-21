@@ -8,12 +8,13 @@
 import React, {Component} from 'react';
 import {observer,inject} from 'mobx-react';
 //===============================================================
+import messageState from './message.state';
 import './message.less';
 
 
-function mapPropsToState(store) {
+function mapPropsToState() {
   return {
-    messageState: store.messageState
+    messageState: messageState
   }
 }
 
@@ -21,15 +22,8 @@ function mapPropsToState(store) {
 @observer
 export default class Message extends Component {
 
-
-
-
   render() {
     const {messageList,bottom} = this.props.messageState;
-
-    messageList.map( item => {
-      console.log(item)
-    });
 
     return (
       <ul className="message" style={{bottom: bottom}}>

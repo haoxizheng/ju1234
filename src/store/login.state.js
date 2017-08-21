@@ -6,6 +6,7 @@
  */
 
 import {action, computed, observable} from 'mobx';
+import message from 'src/components/Message/message';
 //===============================================================================
 import * as pageUrls from 'src/config/pageUrls';
 import API from 'root/service/API';
@@ -30,7 +31,7 @@ class LoginState {
     this.password = e.target.value;
   };
 
-  @action submitHandle = async (router, message) => {
+  @action submitHandle = async (router) => {
     if (this.submitting) return false;
     const isPass = this.validity(message);
     if(!isPass) return false;
