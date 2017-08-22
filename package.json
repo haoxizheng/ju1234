@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "export NODE_ENV=development&& node server.js",
+    "start": "export NODE_ENV=development&& node ./script/server.js",
     "build": "export NODE_ENV=production&& webpack --config ./webpack.config/webpack.config.prod.js",
-    "service": "node serviceServer.js"
+    "service": "node ./script/serviceServer.js"
   },
   "author": "",
   "license": "ISC",
@@ -47,8 +47,10 @@
     "bundle-loader": "^0.5.5",
     "colors": "^1.1.2",
     "express": "^4.15.3",
+    "ioredis": "^3.1.4",
     "koa": "^2.3.0",
     "koa-better-http-proxy": "^0.2.3",
+    "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
     "koa-webpack-middleware": "^1.0.7",

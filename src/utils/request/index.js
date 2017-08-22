@@ -8,6 +8,22 @@
 import axios from 'axios';
 import qs from 'qs';
 
+// 请求拦截
+axios.interceptors.request.use((config) => {
+  if(window.token){
+    config.headers.token = window.token;
+  }
+  return config
+});
+
+// axios.interceptors.response.use((config) => {
+//   if(window.token){
+//     config.headers.token = window.token;
+//   }
+//   return config
+// });
+
+
 //=============================== GET =====================================
 const Get = function (url,params) {
   return axios.get(url,{

@@ -5,9 +5,9 @@
  * date：        2017/8/16
  */
 
-const API = require('../../API/index'),
-  mysql = require('../../../utils/mysql/index'),
-  tableNames = require('../../../utils/mysql/tableName');
+const API = require('../API/index'),
+  mysql = require('../../utils/mysql/index'),
+  tableNames = require('../../utils/mysql/tableName');
 
 module.exports = function (service) {
   service.post(API.LOGIN, async (ctx, next) => {
@@ -33,10 +33,13 @@ module.exports = function (service) {
         message: 'ok',
         data: {
           token: token,
-          id: userId
         }
       };
-     ctx.session.set(userId,token)
+
+     const userInfo = (await mysql(`SELECT * FROM ${tableNames.TB_USER} WHERE id="${userId}";`))[0];
+     userInfo.host = ctx.host;
+     userInfo.ip = ctx.ip;
+     ctx.session.set(token,userInfo)
     }else {
       ctx.body = {
         code: 400,

@@ -14,6 +14,5 @@ const accountService = require('./account');
 
 module.exports = function () {
   accountService(service);
-
   return service.routes()
 };

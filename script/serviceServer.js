@@ -9,17 +9,22 @@ const Koa = require('koa'),
   bodyParser = require('koa-bodyparser'),
   router = require('koa-router')();
 
-const service = require('./service');
+// 数据接口
+const service = require('../service');
+// redis
+const session = require('../middleware/session');
 
 const app = new Koa();
 const port = 8089;
 
 app.use(bodyParser());
 
+// session middleware
+app.use(session());
 
 // log
 app.use(async (ctx, next) => {
-  console.log(ctx.url);
+  console.log(ctx.url,ctx.session);
   await next()
 });
 

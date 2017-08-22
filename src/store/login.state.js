@@ -34,7 +34,7 @@ class LoginState {
   @action submitHandle = async (router) => {
     if (this.submitting) return false;
     const isPass = this.validity(message);
-    if(!isPass) return false;
+    if (!isPass) return false;
 
     this.submitting = true;
 
@@ -45,10 +45,11 @@ class LoginState {
       });
 
       if (res.data.code === 200) {
-        message.success('登录成功',() => {
+        window.token = res.data.data.token;
+        message.success('登录成功', () => {
           router.history.push(pageUrls.HOME)
         });
-      }else {
+      } else {
         message.error(res.data.message);
       }
 
@@ -61,11 +62,11 @@ class LoginState {
   };
 
 
-  validity(message){
-    if(this.account === ''){
+  validity(message) {
+    if (this.account === '') {
       message.error('账户名不得为空');
       return false;
-    }else if(this.password === ''){
+    } else if (this.password === '') {
       message.error('密码不得为空');
       return false;
     }
