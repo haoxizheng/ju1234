@@ -13,11 +13,10 @@ const Koa = require('koa'),
   staticFile = require('koa-static'),
   proxy = require('koa-better-http-proxy');
 
-// const httpsProxyAgent = require('https-proxy-agent');
 
 
 
-const routes = require('./routes');
+const routes = require('../routes');
 
 
 const app = new Koa();
@@ -43,7 +42,7 @@ app.use(async (ctx, next) => {
 // log
 // app.use(async (ctx, next) => {
 //   console.log('log', ctx.request.url);
-//   next();
+//   await next();
 // });
 
 /**
@@ -54,7 +53,7 @@ if (isDevelopment) {
   const webpack = require('webpack');
   const {devMiddleware, hotMiddleware} = require('koa-webpack-middleware');
 
-  let config = require('./webpack.config/webpack.config.dev');
+  let config = require('../webpack.config/webpack.config.dev');
   const compiler = webpack(config);
 
   let webpackDevMiddlewera = devMiddleware(compiler, {
@@ -85,7 +84,7 @@ if (isDevelopment) {
 } else {
   router.get(routes, async (ctx, next) => {
     ctx.response.type = 'html';
-    ctx.body = fs.createReadStream(path.resolve(__dirname, './public/dist/index.html'))
+    ctx.body = fs.createReadStream(path.resolve(__dirname, '../public/dist/index.html'))
   });
 }
 
@@ -99,7 +98,7 @@ const proxyHost = 'http://localhost:8089/';
 app.use(proxy(proxyHost, {
   filter: ctx => {
     const isPass = /^\/api\/?/.test(ctx.url);
-    if(isPass) console.log('proxy:' + ctx.url + ' => ' + proxyHost + ctx.url)
+    if(isPass) console.log('proxy:' + ctx.url + ' => ' + proxyHost + ctx.url);
     return isPass
   },
   // proxyReqPathResolver: (req, res) => {
