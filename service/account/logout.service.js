@@ -12,7 +12,6 @@ module.exports = function (service) {
   service.put(API.LOGOUT,async (ctx,next) => {
     const userToken = ctx.request.headers.token;
     ctx.session.remove(userToken);
-
     ctx.type = 'json';
     ctx.body = {
       code: 200,

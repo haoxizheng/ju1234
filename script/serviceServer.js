@@ -22,11 +22,10 @@ app.use(bodyParser());
 // session middleware
 app.use(session());
 
-// log
-app.use(async (ctx, next) => {
-  console.log(ctx.url,ctx.session);
-  await next()
-});
+// // log
+// app.use(async (ctx, next) => {
+//   await next()
+// });
 
 
 // 接口挂载

@@ -62,7 +62,7 @@ class Login extends Component {
         />
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Phone"
           value={password}
           onChange={changePassword}
         />
