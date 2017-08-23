@@ -36,7 +36,9 @@ export default class Root extends Component {
         <App>
           <Switch>
             <Route exact path={pageUrls.HOME} component={Home}/>
-            <Route exact path={pageUrls.LOGIN} component={Account}/>
+
+            {/* 用户账户、登录、登出 */}
+            <Route exact path={pageUrls.ACCOUNT} component={Account}/>
           </Switch>
         </App>
       </Router>

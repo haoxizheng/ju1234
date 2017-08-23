@@ -6,4 +6,8 @@
  */
 
 
-module.exports = ['/','/account/login'];
+module.exports = [
+  '/',                      // 主页
+  '/account/login',         // 登录页
+  '/account/register'        // 注册页
+];

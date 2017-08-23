@@ -15,6 +15,8 @@ export default class Home extends Component {
     return (
       <div>
         <Link to="/account/login">login</Link>
+        <br/>
+        <a href="http://ju1234.me/todoList/">todo list</a>
       </div>
     )
   }

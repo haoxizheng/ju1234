@@ -71,6 +71,7 @@ if (isDevelopment) {
   app.use(hotMiddleware(compiler));
 
   router.get(routes, async (ctx, next) => {
+
     const mfs = webpackDevMiddlewera.fileSystem,
       filePath = path.join(config.output.path, 'index.html');
 

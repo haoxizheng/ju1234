@@ -9,7 +9,7 @@ import {inject, observer} from 'mobx-react';
 //========================================================================
 import ajax from 'src/utils/request';
 import API from 'root/service/API';
-import './login-form.less';
+import './register-form.less';
 
 function mapPropsToState(store) {
   return {
@@ -50,28 +50,33 @@ class Login extends Component {
       account, password,
       changeAccount, changePassword
     } = this.props.loginState;
-
     return (
-      <form className="login-form" onKeyDown={this.keyDownHandle}>
+      <form className="register-form" onKeyDown={this.keyDownHandle}>
         <div className="ju-logo"><img src="#" alt=""/></div>
         <h3>ju1234</h3>
         <input
           type="text"
-          placeholder="account"
+          placeholder="Account"
           value={account}
           onChange={changeAccount}
         />
         <input
+          type="email"
+          placeholder="Email"
+          value={password}
+          onChange={changePassword}
+        />
+        <input
           type="password"
-          placeholder="password"
+          placeholder="Password"
           value={password}
           onChange={changePassword}
         />
         <button
           type="button"
-          className="login-submit"
+          className="register-submit"
           onClick={this.submitHandle}
-        >登录
+        >创建新用户
         </button>
       </form>
     )
