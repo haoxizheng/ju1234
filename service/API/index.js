@@ -7,5 +7,6 @@
 
 
 module.exports = {
-  LOGIN: '/api/login'
+  LOGIN: '/api/login',
+  LOGOUT: '/api/logout'
 };

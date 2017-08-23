@@ -7,6 +7,8 @@ import {inject, observer} from 'mobx-react';
 //========================================================================
 // import message from 'src/utils/message';
 //========================================================================
+import ajax from 'src/utils/request';
+import API from 'root/service/API';
 import './login-form.less';
 
 function mapPropsToState(store) {
@@ -22,6 +24,10 @@ class Login extends Component {
     router: React.PropTypes.object.isRequired
   };
 
+  componentWillMount(){
+    this.logout()
+  }
+
   // 按下键盘enter事件
   keyDownHandle = (e) => {
     if(e.keyCode === 13){
@@ -29,8 +35,13 @@ class Login extends Component {
     }
   };
 
+  // 提交表单
   submitHandle = () => {
     this.props.loginState.submitHandle(this.context.router)
+  };
+
+  logout = () => {
+    ajax.Post(API.LOGOUT)
   };
 
   render() {
