@@ -64,7 +64,6 @@ class LoginState {
       )
   };
 
-
   // 表单校验
   validity(message) {
     if (this.account === '') {

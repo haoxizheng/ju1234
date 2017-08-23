@@ -5,8 +5,13 @@
  * date：        2017/8/16
  */
 
-const loginService = require('./loginService');
+const loginService = require('./login.service'),
+  logoutService = require('./logout.service');
 
 module.exports = function (service) {
+  // 登录接口
   loginService(service);
+
+  // 登出接口
+  logoutService(service)
 };

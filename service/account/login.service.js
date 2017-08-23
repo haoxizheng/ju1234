@@ -25,6 +25,7 @@ module.exports = function (service) {
       }
     }
 
+    // 获取用户id，若返回id则登录成功，否则失败
     const userId = getUserId(data,password);
 
     if(userId){

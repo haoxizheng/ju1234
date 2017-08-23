@@ -25,6 +25,7 @@ class Login extends Component {
   };
 
   componentWillMount(){
+    console.log(1)
     this.logout();
   }
 
@@ -41,7 +42,7 @@ class Login extends Component {
   };
 
   logout = () => {
-    ajax.Post(API.LOGOUT);
+    ajax.Put(API.LOGOUT).subscribe()
   };
 
   render() {
