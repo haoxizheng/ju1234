@@ -58,32 +58,10 @@ class LoginState {
           console.log('error', error)
         },
         complete => {
+          this.submitting = false;
           console.log('complete', complete)
         }
       )
-
-
-    // try {
-    //   const res = await ajax.Post(API.LOGIN, {
-    //     account: this.account,
-    //     password: this.password
-    //   });
-    //
-    //   if (res.data.code === 200) {
-    //     window.token = res.data.data.token;
-    //     message.success('登录成功', () => {
-    //       router.history.push(pageUrls.HOME)
-    //     });
-    //   } else {
-    //     message.error(res.data.message);
-    //   }
-    //
-    //   this.submitting = false;
-    //   console.log(res.data)
-    // } catch (err) {
-    //   this.submitting = false;
-    //   throw err;
-    // }
   };
 
 

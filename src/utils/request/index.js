@@ -9,6 +9,8 @@ import axios from 'axios';
 import qs from 'qs';
 import {Observable} from 'rxjs';
 //===============================================================
+import message from 'src/components/Message/message'
+//===============================================================
 import * as pageUrls from 'src/config/pageUrls';
 
 
@@ -18,7 +20,7 @@ axios.interceptors.request.use((config) => {
     config.headers.token = window.token;
   }
 
-  config.timeout = 1000;
+  config.timeout = 10000;
   return config
 });
 
@@ -35,8 +37,7 @@ function responseInterceptors(res, observer) {
   if (res.data.code === 200) {
     observer.next(res.data.data)
   } else {
-    console.log('error', res);
-    observer.error(res.data.message)
+    observer.error(res.data.message);
   }
 }
 
@@ -46,10 +47,11 @@ const Get = function (url, params) {
   return Observable.create(function (observer) {
     axios.get(url, {params})
       .then(res => {
-        responseInterceptors(res, observer)
+        responseInterceptors(res, observer);
       })
       .catch(err => {
-        observer.error(err);
+        message.error('网络异常，请稍后再试');
+        observer.complete(err);
       })
   })
 };
@@ -63,7 +65,8 @@ const Post = function (url, data) {
         responseInterceptors(res, observer);
       })
       .catch(err => {
-        observer.error(err);
+        message.error('网络异常，请稍后再试');
+        observer.complete();
       })
   })
 };
@@ -78,7 +81,8 @@ const PostForm = (url, data) => {
         observer.next(res);
       })
       .catch(err => {
-        observer.error(err);
+        message.error('网络异常，请稍后再试');
+        observer.complete();
       })
   })
 };
@@ -93,7 +97,8 @@ const Put = (url, data) => {
         responseInterceptors(res, observer)
       })
       .catch(err => {
-        observer.error(err);
+        message.error('网络异常，请稍后再试');
+        observer.complete();
       })
   })
 };
@@ -108,7 +113,8 @@ const PutForm = (url, data) => {
         responseInterceptors(res, observer)
       })
       .catch(err => {
-        observer.error(err);
+        message.error('网络异常，请稍后再试');
+        observer.complete();
       })
   })
 };

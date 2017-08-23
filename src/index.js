@@ -5,8 +5,7 @@
  */
 import React from 'react';
 import {render} from 'react-dom';
-import {Provider} from 'mobx-react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
+import {Provider} from 'mobx-react';
 // ==============================================================================================================
 import Root from './Router';
 import store from './store';
