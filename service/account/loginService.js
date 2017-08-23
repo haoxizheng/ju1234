@@ -10,6 +10,7 @@ const API = require('../API/index'),
   tableNames = require('../../utils/mysql/tableName');
 
 module.exports = function (service) {
+
   service.post(API.LOGIN, async (ctx, next) => {
     const {account, password} = ctx.request.body;
     ctx.type = 'json';

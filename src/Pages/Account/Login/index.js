@@ -25,23 +25,23 @@ class Login extends Component {
   };
 
   componentWillMount(){
-    this.logout()
+    this.logout();
   }
 
   // 按下键盘enter事件
   keyDownHandle = (e) => {
     if(e.keyCode === 13){
-      this.props.loginState.submitHandle(this.context.router)
+      this.props.loginState.submitHandle(this.context.router);
     }
   };
 
   // 提交表单
   submitHandle = () => {
-    this.props.loginState.submitHandle(this.context.router)
+    this.props.loginState.submitHandle(this.context.router);
   };
 
   logout = () => {
-    ajax.Post(API.LOGOUT)
+    ajax.Post(API.LOGOUT);
   };
 
   render() {

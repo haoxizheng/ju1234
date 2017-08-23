@@ -14,7 +14,9 @@ import ajax from 'src/utils/request';
 
 
 class LoginState {
+  // 账户名
   @observable account = '';
+  // 密码
   @observable password = '';
 
   constructor() {
@@ -31,6 +33,7 @@ class LoginState {
     this.password = e.target.value;
   };
 
+  // 登录表单提交
   @action submitHandle = async (router) => {
     if (this.submitting) return false;
     const isPass = this.validity(message);
@@ -38,30 +41,53 @@ class LoginState {
 
     this.submitting = true;
 
-    try {
-      const res = await ajax.Post(API.LOGIN, {
-        account: this.account,
-        password: this.password
-      });
+    ajax.Post(API.LOGIN, {
+      account: this.account,
+      password: this.password
+    }).subscribe(
+        data => {
+          window.token = data.token;
+          message.success('登录成功', () => {
+            router.history.push(pageUrls.HOME)
+          });
+          this.submitting = false;
+        },
+        error => {
+          this.submitting = false;
+          message.error(error);
+          console.log('error', error)
+        },
+        complete => {
+          console.log('complete', complete)
+        }
+      )
 
-      if (res.data.code === 200) {
-        window.token = res.data.data.token;
-        message.success('登录成功', () => {
-          router.history.push(pageUrls.HOME)
-        });
-      } else {
-        message.error(res.data.message);
-      }
 
-      this.submitting = false;
-      console.log(res.data)
-    } catch (err) {
-      this.submitting = false;
-      throw err;
-    }
+    // try {
+    //   const res = await ajax.Post(API.LOGIN, {
+    //     account: this.account,
+    //     password: this.password
+    //   });
+    //
+    //   if (res.data.code === 200) {
+    //     window.token = res.data.data.token;
+    //     message.success('登录成功', () => {
+    //       router.history.push(pageUrls.HOME)
+    //     });
+    //   } else {
+    //     message.error(res.data.message);
+    //   }
+    //
+    //   this.submitting = false;
+    //   console.log(res.data)
+    // } catch (err) {
+    //   this.submitting = false;
+    //   throw err;
+    // }
   };
 
 
+  // 表单校验
   validity(message) {
     if (this.account === '') {
       message.error('账户名不得为空');
