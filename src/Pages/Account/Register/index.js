@@ -9,68 +9,63 @@ import {inject, observer} from 'mobx-react';
 //========================================================================
 import ajax from 'src/utils/request';
 import API from 'root/service/API';
+import setTitle from 'src/utils/setTitle'
 import './register-form.less';
 
 function mapPropsToState(store) {
   return {
-    loginState: store.loginState
+    registerState: store.registerState
   }
 }
 
 @inject(mapPropsToState)
 @observer
-class Login extends Component {
+class Register extends Component {
   static contextTypes = {
     router: React.PropTypes.object.isRequired
   };
 
   componentWillMount(){
-    // 用户进入login页面，即视为退出登录
-    this.logout();
+    setTitle('注册')
   }
 
   // 按下键盘enter事件
   keyDownHandle = (e) => {
     if(e.keyCode === 13){
-      this.props.loginState.submitHandle(this.context.router);
+      this.submitHandle()
     }
   };
 
   // 提交表单
   submitHandle = () => {
-    this.props.loginState.submitHandle(this.context.router);
-  };
-
-  logout = () => {
-    ajax.Put(API.LOGOUT).subscribe()
+    this.props.registerState.submitHandle(this.context.router);
   };
 
   render() {
     const {
-      account, password,
-      changeAccount, changePassword
-    } = this.props.loginState;
+      account, password, phone, inputValue
+    } = this.props.registerState;
     return (
       <form className="register-form" onKeyDown={this.keyDownHandle}>
         <div className="ju-logo"><img src="#" alt=""/></div>
-        <h3>ju1234</h3>
+        <h3>SIGN UP</h3>
         <input
           type="text"
           placeholder="Account"
           value={account}
-          onChange={changeAccount}
+          onChange={inputValue.bind(this,'account')}
         />
         <input
-          type="email"
+          type="number"
           placeholder="Phone"
-          value={password}
-          onChange={changePassword}
+          value={phone}
+          onChange={inputValue.bind(this,'phone')}
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
-          onChange={changePassword}
+          onChange={inputValue.bind(this,'password')}
         />
         <button
           type="button"
@@ -83,4 +78,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Register;

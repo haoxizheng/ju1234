@@ -8,8 +8,12 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 //================================================================
+import setTitle from 'src/utils/setTitle';
 
 export default class Home extends Component {
+  componentWillMount(){
+    setTitle('ju1234');
+  }
 
   render() {
     return (

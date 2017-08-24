@@ -8,5 +8,6 @@
 
 module.exports = {
   LOGIN: '/api/login',
-  LOGOUT: '/api/logout'
+  LOGOUT: '/api/logout',
+  REGISTER: '/api/register'
 };

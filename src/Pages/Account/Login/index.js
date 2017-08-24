@@ -9,6 +9,7 @@ import {inject, observer} from 'mobx-react';
 //========================================================================
 import ajax from 'src/utils/request';
 import API from 'root/service/API';
+import setTitle from 'src/utils/setTitle';
 import './login-form.less';
 
 function mapPropsToState(store) {
@@ -27,6 +28,8 @@ class Login extends Component {
   componentWillMount(){
     // 用户进入login页面，即视为退出登录
     this.logout();
+
+    setTitle('登录');
   }
 
   // 按下键盘enter事件

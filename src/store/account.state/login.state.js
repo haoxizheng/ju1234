@@ -10,7 +10,7 @@ import message from 'src/components/Message/message';
 //===============================================================================
 import * as pageUrls from 'src/config/pageUrls';
 import API from 'root/service/API';
-import ajax from 'src/utils/request';
+import ajax from 'src/utils/request/index';
 
 
 class LoginState {
@@ -56,7 +56,8 @@ class LoginState {
           }
         },
         error => {
-          console.log('err',error)
+          message.error('服务器繁忙，请稍候再试');
+          this.submitting = false;
         },
         _ => {
           this.submitting = false;

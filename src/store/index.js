@@ -5,11 +5,12 @@
  * date：        2017/8/16
  */
 
-// 登录
-import loginState from './login.state';
-
+// 账户系统
+import loginState from './account.state/login.state';
+import registerState from './account.state/register.state';
 
 
 export default {
-  loginState
+  loginState,
+  registerState
 }
