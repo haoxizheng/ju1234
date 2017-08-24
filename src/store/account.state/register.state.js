@@ -19,9 +19,15 @@ class RegisterState {
   @observable password = '';
   @observable phone = '';
   @observable submitting = false;
+  @observable inputState = {
+    account: '',
+    password: '',
+    phone: ''
+  };
 
   @action inputValue = (key, e) => {
     this[key] = e.target.value;
+    this.inputState[key] = formReg[key.toUpperCase()].test(e.target.value) ? 'success' : 'error';
   };
 
   @action submitHandle = () => {

@@ -43,7 +43,7 @@ class Register extends Component {
 
   render() {
     const {
-      account, password, phone, inputValue
+      account, password, phone, inputValue,inputState
     } = this.props.registerState;
     return (
       <form className="register-form" onKeyDown={this.keyDownHandle}>
@@ -54,18 +54,21 @@ class Register extends Component {
           placeholder="Account"
           value={account}
           onChange={inputValue.bind(this,'account')}
+          className={inputState.account}
         />
         <input
           type="number"
           placeholder="Phone"
           value={phone}
           onChange={inputValue.bind(this,'phone')}
+          className={inputState.phone}
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={inputValue.bind(this,'password')}
+          className={inputState.password}
         />
         <button
           type="button"
