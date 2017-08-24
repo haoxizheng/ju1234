@@ -19,8 +19,9 @@ class LoginState {
   // 密码
   @observable password = '';
 
+  @observable submitting = false;
+
   constructor() {
-    this.submitting = false;
   }
 
   // 账户输入框 change事件
@@ -45,21 +46,20 @@ class LoginState {
       account: this.account,
       password: this.password
     }).subscribe(
-        data => {
-          window.token = data.token;
-          message.success('登录成功', () => {
-            router.history.push(pageUrls.HOME)
-          });
-          this.submitting = false;
+        res => {
+          if(res.data.code === 200){
+            window.token = res.data.data.token;
+            router.history.push(pageUrls.HOME);
+            message.success('登录成功');
+          }else {
+            message.error(res.data.message);
+          }
         },
         error => {
-          this.submitting = false;
-          message.error(error);
-          console.log('error', error)
+          console.log('err',error)
         },
-        complete => {
+        _ => {
           this.submitting = false;
-          console.log('complete', complete)
         }
       )
   };

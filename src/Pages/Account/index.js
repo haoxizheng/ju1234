@@ -20,7 +20,7 @@ export default class Account extends Component {
   render() {
     return (
       <div className="account">
-        <div className="main-content">
+        <div className="main-content" key="1" data-key="1">
           <Route exact path={pageUrls.LOGIN} component={Login}/>
           <Route exact path={pageUrls.REGISTER} component={Register}/>
         </div>

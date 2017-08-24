@@ -8,3 +8,4 @@ yarn.lock
 .happypack
 src/routes/index.dev.js
 .idea
+yarn-error.log

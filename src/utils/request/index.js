@@ -19,7 +19,6 @@ axios.interceptors.request.use((config) => {
   if (window.token) {
     config.headers.token = window.token;
   }
-
   config.timeout = 10000;
   return config
 });
@@ -32,93 +31,37 @@ axios.interceptors.response.use((response) => {
   return response
 });
 
-// 响应拦截
-function responseInterceptors(res, observer) {
-  if (res.data.code === 200) {
-    observer.next(res.data.data)
-  } else {
-    observer.error(res.data.message);
-  }
-}
-
 
 //=============================== GET =====================================
 const Get = function (url, params) {
-  return Observable.create(async function (observer) {
-    let res;
-    try {
-      res = await axios.get(url, {params})
-    } catch (err) {
-      message.error('网络异常，请稍后再试');
-      observer.complete();
-    }
-    responseInterceptors(res, observer);
-  })
+  return Observable.fromPromise(axios.get(url, {params}))
 };
 
-//=============================== POST =====================================
+//=============================== POST =====================================n
 //  content-type='application/json'
 const Post = function (url, data) {
-  return Observable.create(async function (observer) {
-    let res;
-    try {
-      res = await axios.post(url, data)
-    } catch (err) {
-      message.error('网络异常，请稍后再试');
-      observer.complete();
-    }
-    responseInterceptors(res, observer);
-  })
+  return Observable.fromPromise(axios.post(url, data))
 };
 
 // content-type='application/x-www-form-urlencoded'
 const PostForm = (url, data) => {
-  return Observable.create(async function (observer) {
-    let res;
-    try {
-      res = await axios.post(url, qs.stringify(data, {
-        arrayFormat: 'brackets'
-      }));
-    } catch (err) {
-      message.error('网络异常，请稍后再试');
-      observer.complete();
-    }
-    responseInterceptors(res, observer);
-
-  })
+  return Observable.fromPromise(axios.post(url, qs.stringify(data, {
+    arrayFormat: 'brackets'
+  })));
 };
 
 
 //=============================== PUT =====================================
 //  content-type='application/json'
 const Put = (url, data) => {
-  return Observable.create(async function (observer) {
-    let res;
-    try {
-      res = await axios.put(url, data);
-    } catch (err) {
-      message.error('网络异常，请稍后再试');
-      observer.complete();
-    }
-    responseInterceptors(res, observer);
-  })
+  return Observable.fromPromise(axios.put(url, data))
 };
 
 // content-type='application/x-www-form-urlencoded'
 const PutForm = (url, data) => {
-  return Observable.create(async function (observer) {
-    let res;
-    try {
-      res = await axios.put(url, qs.stringify(data, {
-        arrayFormat: 'brackets'
-      }))
-    } catch (err) {
-      message.error('网络异常，请稍后再试');
-      observer.complete();
-    }
-    responseInterceptors(res, observer);
-
-  })
+  return Observable.fromPromise(axios.put(url, qs.stringify(data, {
+    arrayFormat: 'brackets'
+  })))
 };
 
 
