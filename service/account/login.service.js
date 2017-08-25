@@ -5,6 +5,7 @@
  * date：        2017/8/16
  */
 
+
 const API = require('../API/index'),
   mysql = require('../../utils/mysql/index'),
   tableNames = require('../../utils/mysql/tableName');
@@ -50,6 +51,7 @@ module.exports = function (service) {
      userInfo.ip = ctx.ip;
      ctx.session.set(token,userInfo)
     }else {
+      // todo 后期可添加验证功能，如用户不存在，可提示跳转登录页
       ctx.body = {
         code: 400,
         message: '账户与密码不匹配'

@@ -19,6 +19,7 @@ module.exports = function (service) {
   service.post(API.REGISTER, async (ctx, next) => {
     const {account, password, phone} = ctx.request.body;
 
+    // todo 可在插入前进行查询，手机号是否唯一
     try {
       await mysql(`INSERT INTO ${tableNames.TB_USER} (nickname,password,phone) VALUES ('${account}','${password}','${phone}');`);
       const token = ctx.session.createToken();
@@ -49,6 +50,5 @@ module.exports = function (service) {
         message: err
       }
     }
-
   })
 };
