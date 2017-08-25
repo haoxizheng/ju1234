@@ -5,17 +5,13 @@
  * date：        2017/8/16
  */
 
-const loginService = require('./login.service'),
-  logoutService = require('./logout.service'),
-  registerService = require('./register.service');
-
 module.exports = function (service) {
   // 登录接口
-  loginService(service);
+  require('./login.service')(service);
 
   // 登出接口
-  logoutService(service);
+  require('./logout.service')(service);
 
   // 注册接口
-  registerService(service);
+  require('./register.service')(service);
 };

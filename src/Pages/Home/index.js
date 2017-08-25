@@ -10,6 +10,7 @@ import {Link} from 'react-router-dom';
 //================================================================
 import setTitle from 'src/utils/setTitle';
 import Loading from 'src/components/Loading/index'
+import Button from 'jc/Button'
 
 
 export default class Home extends Component {
@@ -24,6 +25,7 @@ export default class Home extends Component {
         <br/>
         <Loading/>
         <a href="http://ju1234.me/todoList/">todo list</a>
+        <Button onClick={() => {console.log(111)}} className="asdaads">你好</Button>
       </div>
     )
   }

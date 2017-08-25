@@ -13,13 +13,12 @@ import LoadingWave from './Wave';
 export default class Loading extends Component{
 
   render(){
-    console.log(this.props)
     const type = this.props.type;
     let Loading = LoadingCircle;
 
-    if(type === 'successively'){
+    if(type === 'wave'){
       Loading = LoadingWave;
     }
-    return <Loading/>;
+    return <Loading />;
   }
 }

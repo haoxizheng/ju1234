@@ -239,6 +239,7 @@ textarea {
   /* 1 */
   margin: 0;
   /* 2 */
+  border-width: 0;
 }
 
 /**
@@ -526,15 +527,6 @@ input::-ms-reveal {
   display: none;
 }
 
-::-moz-selection {
-  background: #108ee9;
-  color: #fff;
-}
-
-::selection {
-  background: #108ee9;
-  color: #fff;
-}
 
 h1,
 h2,
