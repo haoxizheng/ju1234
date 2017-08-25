@@ -9,8 +9,12 @@ const API = require('../API/index'),
   mysql = require('../../utils/mysql/index'),
   tableNames = require('../../utils/mysql/tableName');
 
-module.exports = function (service) {
 
+/**
+ * (name = "account",value = "用户名或手机号",required = true,paramType = "body",dataType = "string")
+ * (name = "password",value = "密码",required = true,paramType = "body",dataType = "string")
+ */
+module.exports = function (service) {
   service.post(API.LOGIN, async (ctx, next) => {
     const {account, password} = ctx.request.body;
     ctx.type = 'json';
@@ -30,15 +34,18 @@ module.exports = function (service) {
 
     if(userId){
       const token = ctx.session.createToken();
+      const userInfo = (await mysql(`SELECT * FROM ${tableNames.TB_USER} WHERE id="${userId}";`))[0];
+
       ctx.body = {
         code: 200,
         message: 'ok',
         data: {
           token: token,
+          userInfo
         }
       };
 
-     const userInfo = (await mysql(`SELECT * FROM ${tableNames.TB_USER} WHERE id="${userId}";`))[0];
+      // 登陆成功获取用户信息，并存储在session中
      userInfo.host = ctx.host;
      userInfo.ip = ctx.ip;
      ctx.session.set(token,userInfo)

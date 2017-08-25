@@ -6,12 +6,16 @@
  */
 
 const loginService = require('./login.service'),
-  logoutService = require('./logout.service');
+  logoutService = require('./logout.service'),
+  registerService = require('./register.service');
 
 module.exports = function (service) {
   // 登录接口
   loginService(service);
 
   // 登出接口
-  logoutService(service)
+  logoutService(service);
+
+  // 注册接口
+  registerService(service);
 };

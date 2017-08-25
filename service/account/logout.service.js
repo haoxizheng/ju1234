@@ -7,7 +7,9 @@
 
 const API = require('../API/index');
 
-
+/**
+ * (name = "token",value = "token",required = false,paramType = "header",dataType = "string")
+ */
 module.exports = function (service) {
   service.put(API.LOGOUT,async (ctx,next) => {
     const userToken = ctx.request.headers.token;
