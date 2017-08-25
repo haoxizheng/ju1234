@@ -34,6 +34,7 @@ module.exports = function (service) {
     const userId = getUserId(data,password);
 
     if(userId){
+      // todo 登录完成设置 最后登录时间，或进行全局拦截，只要请求即认为最后登录时间，待完善
       const token = ctx.session.createToken();
       const userInfo = (await mysql(`SELECT * FROM ${tableNames.TB_USER} WHERE id="${userId}";`))[0];
 
