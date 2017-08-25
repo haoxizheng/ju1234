@@ -1,0 +1,42 @@
+@import "../../../style/index";
+@loading_animation_time: .6s;
+
+@keyframes loading-animation {
+  0% {
+    transform: scale(0.0);
+  }
+
+  100%{
+    transform: scale(1);
+  }
+}
+
+
+
+.loading-wave-wrap {
+  display: inline-block;
+  margin: 0 auto;
+
+  > div{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border-radius: 50%;
+    background: @secondary_color;
+
+    animation: loading-animation @loading_animation_time ease-in-out infinite alternate;
+
+    + div{
+      animation-delay: @loading_animation_time / 3;
+      + div{
+        animation-delay: ( @loading_animation_time / 3) * 2;
+      }
+    }
+
+
+  }
+
+
+
+
+}

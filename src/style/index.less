@@ -1,5 +1,5 @@
 //主色调
-@marin_color: #208FE6;
+@main_color: #208FE6;
 
 //辅助色
 @secondary_color: #80D1F8;
@@ -23,7 +23,7 @@
 @error_color: #E60000;
 
 //信息
-@info_color: @marin_color;
+@info_color: @main_color;
 
 
 //显示动画时间
@@ -37,4 +37,15 @@
 //悬浮阴影
 .shadow{
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.clear-float{
+  &::after,&::before{
+    content: ' ';
+    display: block;
+    clear: both;
+    zoom: 1;
+  }
 }
