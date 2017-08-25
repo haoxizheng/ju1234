@@ -17,13 +17,25 @@ export default class Button extends Component {
   };
 
   componentWillMount(){
-    let className = 'button ' + this.props.className;
-    let children = this.props.loading ? <Loading type="wave"/> : this.props.children;
-    this.setState({
-      className,
-      children
-    })
+    this.propsParse(this.props);
   }
+
+  componentWillReceiveProps(nextProps){
+    this.propsParse(nextProps)
+  }
+
+  // 处理传入的props
+  propsParse = (props) => {
+    const {className,children,type,loading} = props;
+
+    let classNameParse = className ? ` ${className}` :'';
+
+    this.setState({
+      children: loading ? <Loading type="wave"/> : children,
+      type: type ? type : 'button',
+      className: 'button' + classNameParse
+    })
+  };
 
   // loading状态使button点击事件失效
   clickHandle = (e) => {
@@ -41,6 +53,7 @@ export default class Button extends Component {
       <button
         className={this.state.className}
         onClick={this.clickHandle}
+        type={this.state.type}
       >
         {this.state.children}
       </button>

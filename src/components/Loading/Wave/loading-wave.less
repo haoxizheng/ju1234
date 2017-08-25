@@ -12,19 +12,21 @@
 }
 
 
-
 .loading-wave-wrap {
   display: inline-block;
   margin: 0 auto;
 
   > div{
-    width: 1.2em;
-    height: 1.2em;
+    width: .8em;
+    height: .8em;
     display: inline-block;
     border-radius: 50%;
     background: @secondary_color;
-
     animation: loading-animation @loading_animation_time ease-in-out infinite alternate;
+
+    &:not(:last-child){
+      margin-right: .2em;
+    }
 
     + div{
       animation-delay: @loading_animation_time / 3;

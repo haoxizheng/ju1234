@@ -7,7 +7,7 @@
 
 import {action, computed, observable} from 'mobx';
 //========================================================================
-import message from 'src/components/Message/message';
+import {message} from 'jc';
 //========================================================================
 import API from 'root/service/API';
 import ajax from 'src/utils/request';
@@ -25,11 +25,26 @@ class RegisterState {
     phone: ''
   };
 
+  // 数据初始化
+  @action init = () => {
+    this.account = '';
+    this.password = '';
+    this.phone = '';
+    this.submitting = false;
+    this.inputState = {
+      account: '',
+      password: '',
+      phone: ''
+    };
+  };
+
+  // 用户输入事件
   @action inputValue = (key, e) => {
     this[key] = e.target.value;
     this.inputState[key] = formReg[key.toUpperCase()].test(e.target.value) ? 'success' : 'error';
   };
 
+  // 表单提交事件
   @action submitHandle = (router) => {
     if (this.submitting || !this.formValidity())
       return false;
@@ -61,6 +76,7 @@ class RegisterState {
     )
   };
 
+  // 表单校验
   formValidity = () => {
     if (!formReg.ACCOUNT.test(this.account)) {
       message.error('用户名不得为空');

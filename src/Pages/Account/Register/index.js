@@ -4,6 +4,7 @@
 
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
+import {Button} from 'jc';
 //========================================================================
 // import message from 'src/utils/message';
 //========================================================================
@@ -29,6 +30,10 @@ class Register extends Component {
     setTitle('注册')
   }
 
+  componentWillUnmount(){
+    this.props.registerState.init()
+  }
+
   // 按下键盘enter事件
   keyDownHandle = (e) => {
     if(e.keyCode === 13){
@@ -43,7 +48,7 @@ class Register extends Component {
 
   render() {
     const {
-      account, password, phone, inputValue,inputState
+      account, password, phone, inputValue,inputState,submitting
     } = this.props.registerState;
     return (
       <form className="register-form" onKeyDown={this.keyDownHandle}>
@@ -70,12 +75,13 @@ class Register extends Component {
           onChange={inputValue.bind(this,'password')}
           className={inputState.password}
         />
-        <button
+        <Button
           type="button"
-          className="register-submit"
           onClick={this.submitHandle}
-        >创建新用户
-        </button>
+          loading={submitting}
+        >
+          注册
+        </Button>
       </form>
     )
   }

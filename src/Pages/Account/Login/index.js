@@ -4,6 +4,7 @@
 
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
+import {Button} from 'jc';
 //========================================================================
 // import message from 'src/utils/message';
 //========================================================================
@@ -32,6 +33,10 @@ class Login extends Component {
     setTitle('登录');
   }
 
+  componentWillUnmount(){
+    this.props.loginState.init()
+  }
+
   // 按下键盘enter事件
   keyDownHandle = (e) => {
     if(e.keyCode === 13){
@@ -51,9 +56,10 @@ class Login extends Component {
   render() {
     const {
       account, password,
-      changeAccount, changePassword
+      changeAccount, changePassword,submitting
     } = this.props.loginState;
 
+    console.log('submitting',submitting)
     return (
       <form className="login-form" onKeyDown={this.keyDownHandle}>
         <div className="ju-logo"><img src="#" alt=""/></div>
@@ -70,12 +76,13 @@ class Login extends Component {
           value={password}
           onChange={changePassword}
         />
-        <button
+        <Button
           type="button"
-          className="login-submit"
           onClick={this.submitHandle}
-        >登录
-        </button>
+          loading={submitting}
+        >
+          登录
+        </Button>
       </form>
     )
   }
