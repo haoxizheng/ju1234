@@ -12,7 +12,7 @@ import message from 'src/components/Message/message';
 import API from 'root/service/API';
 import ajax from 'src/utils/request';
 import formReg from 'src/utils/formValidity';
-
+import * as pageUrls from 'src/config/pageUrls';
 
 class RegisterState {
   @observable account = '';
@@ -30,7 +30,7 @@ class RegisterState {
     this.inputState[key] = formReg[key.toUpperCase()].test(e.target.value) ? 'success' : 'error';
   };
 
-  @action submitHandle = () => {
+  @action submitHandle = (router) => {
     if (this.submitting || !this.formValidity())
       return false;
 
@@ -42,7 +42,13 @@ class RegisterState {
       password: this.password
     }).subscribe(
       res => {
-
+        if(res.data.code === 200){
+          message.success('创建成功');
+          window.token = res.data.data.token;
+          router.history.push(pageUrls.HOME)
+        }else {
+          message.error(res.data.message)
+        }
       },
       err => {
         message.error('服务器繁忙，请稍候再试');

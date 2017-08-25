@@ -21,9 +21,6 @@ class LoginState {
 
   @observable submitting = false;
 
-  constructor() {
-  }
-
   // 账户输入框 change事件
   @action changeAccount = (e) => {
     this.account = e.target.value;
