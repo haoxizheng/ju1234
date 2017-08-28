@@ -11,11 +11,11 @@ let baseConfig = require('./webpack.config'),
   WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin'),
   hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
-
 let developingConfig = baseConfig;
 
 
 developingConfig.entry.unshift(hotMiddlewareScript);
+developingConfig.entry.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000');
 developingConfig.output.publicPath = '/dist/';
 
 developingConfig.devtool = 'source-map';

@@ -18,7 +18,7 @@ class RegisterState {
   @observable account = '';
   @observable password = '';
   @observable phone = '';
-  @observable submitting = false;
+  @observable sub017mitting = false;
   @observable inputState = {
     account: '',
     password: '',

@@ -23,7 +23,8 @@ colors.setTheme({
 
 let productionConfig = baseConfig;
 
-productionConfig.output.publicPath =  '/dist/';
+productionConfig.output.publicPath = 'http://om0wp96oa.bkt.clouddn.com/dist/';
+
 
 productionConfig.plugins.push(
     new webpack.DefinePlugin({

@@ -39,11 +39,10 @@ app.use(async (ctx, next) => {
   }
 });
 
-// log
-// app.use(async (ctx, next) => {
-//   console.log('log', ctx.request.url);
-//   await next();
-// });
+app.use(async (ctx, next) => {
+  console.log('log', ctx.request.url);
+  await next();
+});
 
 /**
  * 开发模式： 使用webpack hot middleware
@@ -84,6 +83,7 @@ if (isDevelopment) {
 
 } else {
   router.get(routes, async (ctx, next) => {
+    console.log('production')
     ctx.response.type = 'html';
     ctx.body = fs.createReadStream(path.resolve(__dirname, '../public/dist/index.html'))
   });

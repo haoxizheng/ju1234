@@ -22,10 +22,8 @@ function mapPropsToState() {
 @inject(mapPropsToState)
 @observer
 export default class Message extends Component {
-
   render() {
     const {messageList} = this.props.messageState;
-
     return (
       <ul className="message">
         <Animation>

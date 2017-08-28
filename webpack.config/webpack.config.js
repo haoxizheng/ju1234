@@ -36,11 +36,10 @@ module.exports = {
   // devtool: 'source-map',
   entry: [
     "babel-polyfill",
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './src/index.js',
   ],
   output: {
-    path: path.resolve('../public/dist'),
+    path: path.resolve(__dirname ,'../public/dist'),
     filename: 'bundle.[hash:8].js',
     chunkFilename: '[name].[chunkhash:8].chunk.js'
   },
@@ -137,11 +136,11 @@ module.exports = {
               style: "css"
             }]
           ],
-          env: {
-            'development': {
-              'presets': ['react-hmre']
-            }
-          }
+          // env: {
+          //   'development': {
+          //     'presets': ['react-hmre']
+          //   }
+          // }
         },
       }]
     }),

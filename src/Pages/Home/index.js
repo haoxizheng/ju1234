@@ -21,7 +21,9 @@ export default class Home extends Component {
       <div>
         <Link to="/account/login">login</Link>
         <br/>
-        <a href="http://ju1234.me/todoList/">todo list</a>
+        {/*<a href="http://ju1234.me/todoList/">todo list</a>*/}
+        <br/>
+        <a href="#">blog</a>
       </div>
     )
   }
