@@ -11,7 +11,8 @@ const Koa = require('koa'),
   fs = require('fs'),
   router = require('koa-router')(),
   staticFile = require('koa-static'),
-  proxy = require('koa-better-http-proxy');
+  proxy = require('koa-better-http-proxy'),
+  shell = require('shelljs');
 
 
 
@@ -90,6 +91,14 @@ if (isDevelopment) {
 }
 
 
+router.get('/asd/restart',async (ctx,next) => {
+  shell.exec(`forever restartall`);
+  ctx.type = 'json';
+  ctx.body = {
+    code: 200,
+    message: 'restart success'
+  }
+});
 
 // 路由挂载
 app.use(router.routes());

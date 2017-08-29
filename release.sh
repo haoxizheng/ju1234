@@ -24,3 +24,4 @@ export NODE_ENV=production & node qiniu.config.js
 
 echo '文件上传成功'
 
+curl http://${host}/asd/restart
