@@ -7,7 +7,15 @@
 
 
 module.exports = {
+  // =====================登录注册，用户系统===========================
   LOGIN: '/api/login',
   LOGOUT: '/api/logout',
-  REGISTER: '/api/register'
+  REGISTER: '/api/register',
+
+  // =====================todo list===========================
+  POST_TODO_CREATE: '/api/todo/create',
+  GET_TODO_DETAIL: todoId => `/api/todo/${todoId}`,
+  PUT_TODO_DONE: todoId => `/api/todo/done/${todoId}`,
+  GET_TODO_LIST: '/api/todo/list',
+  PUT_TODO_DETAIL: todoId => `/api/todo/edit/${todoId}`,
 };

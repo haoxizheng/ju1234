@@ -8,11 +8,14 @@
 const service = require('koa-router')();
 
 
-// 账号相关
-const accountService = require('./account');
 
 
 module.exports = function () {
-  accountService(service);
+  // 账号相关 登录注册
+  require('./account')(service);
+
+  // todoList
+  require('./todoList')(service);
+
   return service.routes()
 };

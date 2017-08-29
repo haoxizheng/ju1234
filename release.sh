@@ -18,7 +18,7 @@ echo '开始上传'
 
 
 scp ./public/dist/index.html root@${host}${path}/public/dist/
-#scp -r ./middleware ./script ./routes ./package.json ./utils ./service root@${host}${path}
+#scp -r ./middleware ./script ./routes ./package.json ./utils ./todoList root@${host}${path}
 
 export NODE_ENV=production & node qiniu.config.js
 
