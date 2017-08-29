@@ -24,10 +24,11 @@ app.use(bodyParser());
 // session middleware
 app.use(session());
 
-// // log
-// app.use(async (ctx, next) => {
-//   await next()
-// });
+// log
+app.use(async (ctx, next) => {
+  log(ctx.url);
+  await next()
+});
 
 
 // 接口挂载
