@@ -9,6 +9,8 @@ const Koa = require('koa'),
   bodyParser = require('koa-bodyparser'),
   router = require('koa-router')();
 
+global.log = console.log.bind(console);
+
 // 数据接口
 const service = require('../service');
 // redis

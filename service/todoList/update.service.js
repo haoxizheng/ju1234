@@ -7,27 +7,30 @@ const mysql = require('../../utils/mysql'),
   tableName = require('../../utils/mysql/tableName');
 
 
-
+/**
+ * (name = "title",value = "todoItem 简介",required = true,paramType = "query",dataType = "string")
+ * (name = "instancy",value = "是否紧急",required = true,paramType = "query",dataType = "number")
+ * (name = "id",value = "todoItem id",required = true,paramType = "params",dataType = "number")
+ */
 module.exports = function (app) {
-  app.put(API.PUT_TODO_DETAIL(':id'),function (req,res,next) {
-    const id = req.params.id;
-    const data = req.body;
+  app.put(API.PUT_TODO_DETAIL(':id'), async (ctx, next) => {
+    ctx.type = 'json';
+    const {id} = ctx.params;
+    const {title, instancy} = ctx.body;
 
-    mysql(`UPDATE ${tableName.TODO_LIST} SET title='${data.title}',instancy=${data.instancy} WHERE id=${id};`)
-      .then( data => {
-        res.json({
-          code: 200,
-          data: 'ok',
-          message: 'ok'
-        })
-      }).catch( err => {
-        console.log(err);
-        res.json({
-          code: 500,
-          data: 'err',
-          message: '请稍后再试'
-        })
-    })
+    try {
+      await mysql(`UPDATE ${tableName.TODO_LIST} SET title='${title}',instancy=${instancy} WHERE id=${id};`);
+      ctx.body = {
+        code: 200,
+        data: 'ok',
+        message: 'ok'
+      }
+    } catch (err) {
+      ctx.body = {
+        code: 500,
+        message: err
+      }
+    }
   })
 };
 

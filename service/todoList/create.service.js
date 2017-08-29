@@ -1,6 +1,8 @@
 /**
- * Created by jufei on 2017/7/30.
- * 新建todo
+ * intro：       todo.create.service
+ * description： 新建todo
+ * author：      jufei
+ * date：        2017/8/24
  */
 
 const mysql = require('../../utils/mysql'),

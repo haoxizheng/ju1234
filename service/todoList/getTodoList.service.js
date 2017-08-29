@@ -9,44 +9,41 @@ const mysql = require('../../utils/mysql'),
 
 
 /**
- * @param app
- *
- * @param type 0=未完成列表 1=已完成列表
- * @param index 页数
- * @param size  每页多少条数据
+ * (name = "index",value = "页码",required = false,paramType = "query",dataType = "number" , default = 1)
+ * (name = "size",value = "每页多少条",required = false,paramType = "query",dataType = "number" , default = 10)
+ * (name = "done",value = "是否完成",required = true,paramType = "query",dataType = "number")
  */
 module.exports = function (app) {
-  app.get(API.GET_TODO_LIST, function (req, response, next) {
+  app.get(API.GET_TODO_LIST, async (ctx, next) => {
 
-    const params = req.query;
+    const params = ctx.request.query;
+    log(params);
+    params.size = params.size ? parseInt(params.size) : 10;
+    params.index = params.index ? parseInt(params.index) : 1;
+    ctx.type = 'json';
 
-    params.size = params.size ? parseInt(params.size) :  20;
-    params.index = params.index ? parseInt(params.index) :  1;
-
-    Promise.all([
-      mysql(sqlFactory(params)),
-      mysql(`SELECT count(*) AS count FROM ${tableName.TODO_LIST} WHERE done=${params.done};`)
-    ]).then(res => {
-      response.json({
+    try {
+      const list = (await mysql(sqlFactory(params)));
+      const total = (await mysql(`SELECT count(*) AS count FROM ${tableName.TODO_LIST} WHERE done=${params.done};`))[0].count;
+      ctx.body = {
         code: 200,
         data: {
-          list: res[0],
+          list: list,
           page: {
-            total: res[1][0].count,
+            total: total,
             size: parseInt(params.size),
             index: parseInt(params.index)
           }
         },
         message: 'ok'
-      })
-    }).catch(err => {
-      console.log(err);
-      res.json({
+      }
+    } catch (err) {
+      ctx.body = {
         code: 500,
-        data: [],
+        data: {},
         message: '未知错误，请稍后重试'
-      })
-    })
+      }
+    }
   })
 };
 
