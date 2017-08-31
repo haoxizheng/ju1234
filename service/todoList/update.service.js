@@ -15,8 +15,8 @@ const mysql = require('../../utils/mysql'),
 module.exports = function (app) {
   app.put(API.PUT_TODO_DETAIL(':id'), async (ctx, next) => {
     ctx.type = 'json';
-    const {id} = ctx.params;
-    const {title, instancy} = ctx.body;
+    const id = ctx.params.id;
+    const {title, instancy} = ctx.request.body;
 
     try {
       await mysql(`UPDATE ${tableName.TODO_LIST} SET title='${title}',instancy=${instancy} WHERE id=${id};`);
