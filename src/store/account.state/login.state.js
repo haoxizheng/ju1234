@@ -51,7 +51,7 @@ class LoginState {
     }).subscribe(
         res => {
           if(res.data.code === 200){
-            window.token = res.data.data.token;
+            localStorage.setItem('token',res.data.data.token);
             router.history.push(pageUrls.HOME);
             message.success('登录成功');
           }else {

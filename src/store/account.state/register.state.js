@@ -59,7 +59,8 @@ class RegisterState {
       res => {
         if(res.data.code === 200){
           message.success('创建成功');
-          window.token = res.data.data.token;
+          // window.token = res.data.data.token;
+          localStorage.setItem('token',res.data.data.token);
           router.history.push(pageUrls.HOME)
         }else {
           message.error(res.data.message)

@@ -16,7 +16,7 @@ import * as pageUrls from 'src/config/pageUrls';
 // 请求拦截
 axios.interceptors.request.use((config) => {
   if (window.token) {
-    config.headers.token = window.token;
+    config.headers.token = localStorage.getItem('token');
   }
   config.timeout = 10000;
   return config
