@@ -5,10 +5,10 @@
  * 时间： 17.3.31
  */
 
-var qiniu = require('qiniu');
+const qiniu = require('qiniu');
 
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 
 
 

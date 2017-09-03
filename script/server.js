@@ -27,10 +27,8 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const port = isDevelopment ? 8088 : 8088;
 
 
-
-
 // 静态资源
-app.use(staticFile(path.resolve(__dirname, './public/')));
+app.use(staticFile(path.resolve(__dirname, '../public/')));
 
 // 404页面处理
 app.use(async (ctx, next) => {
@@ -111,9 +109,6 @@ app.use(proxy(proxyHost, {
     if(isPass) console.log('proxy:' + ctx.url + ' => ' + proxyHost + ctx.url);
     return isPass
   },
-  // proxyReqPathResolver: (req, res) => {
-  //   return '/api' + req.url.replace('/point/api','');
-  // }
 }));
 
 

@@ -9,7 +9,6 @@ import axios from 'axios';
 import qs from 'qs';
 import {Observable} from 'rxjs';
 //===============================================================
-import {message} from 'jc';
 //===============================================================
 import * as pageUrls from 'src/config/pageUrls';
 
