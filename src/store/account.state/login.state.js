@@ -7,6 +7,7 @@
 
 import {action, computed, observable} from 'mobx';
 import message from 'src/components/Message/message';
+import qs from 'query-string';
 //===============================================================================
 import * as pageUrls from 'src/config/pageUrls';
 import API from 'root/service/API';
@@ -52,8 +53,8 @@ class LoginState {
         res => {
           if(res.data.code === 200){
             localStorage.setItem('token',res.data.data.token);
-            router.history.push(pageUrls.HOME);
             message.success('登录成功');
+            this.redirect();
           }else {
             message.error(res.data.message);
           }
@@ -78,6 +79,19 @@ class LoginState {
       return false;
     }
     return true;
+  }
+
+
+  // 登陆成功跳转
+  redirect(){
+    const appId = parseInt(qs.parse(location.search).appId);
+
+    // todoList
+    if(appId === 0){
+      location.href = '/todoList';
+    }else {
+      location.href = '/';
+    }
   }
 }
 

@@ -60,6 +60,7 @@
     "mysql": "^2.14.1",
     "qiniu": "6.1.13",
     "qs": "^6.5.0",
+    "query-string": "^5.0.0",
     "react": "^15.5.4",
     "react-addons-css-transition-group": "^15.6.0",
     "react-dom": "^15.5.4",

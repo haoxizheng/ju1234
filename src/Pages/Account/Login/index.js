@@ -29,7 +29,6 @@ class Login extends Component {
   componentWillMount(){
     // 用户进入login页面，即视为退出登录
     this.logout();
-
     setTitle('登录');
   }
 
@@ -50,6 +49,7 @@ class Login extends Component {
   };
 
   logout = () => {
+    localStorage.removeItem('token');
     ajax.Put(API.LOGOUT).subscribe()
   };
 
@@ -59,7 +59,7 @@ class Login extends Component {
       changeAccount, changePassword,submitting
     } = this.props.loginState;
 
-    console.log('submitting',submitting)
+    console.log('submitting',submitting);
     return (
       <form className="login-form" onKeyDown={this.keyDownHandle}>
         <div className="ju-logo"><img src="#" alt=""/></div>
