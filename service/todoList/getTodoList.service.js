@@ -23,7 +23,7 @@ module.exports = function (app) {
     ctx.type = 'json';
 
     try {
-      const list = (await mysql(sqlFactory(params)));
+      const list = (await mysql(sqlFactory(params,ctx.user_id)));
       const total = (await mysql(`SELECT count(*) AS count FROM ${tableName.TODO_LIST} WHERE done=${params.done};`))[0].count;
       ctx.body = {
         code: 200,
@@ -47,7 +47,14 @@ module.exports = function (app) {
   })
 };
 
-function sqlFactory(params) {
+function sqlFactory(params,id) {
   const start = (params.index - 1) * params.size;
-  return `SELECT * FROM ${tableName.TODO_LIST} WHERE done=${params.done} ${params.done == 1 ? 'ORDER BY doneTime DESC' : 'ORDER BY createTime DESC'} LIMIT ${start},${params.size} ;`;
+  return `
+  SELECT * FROM ${tableName.TODO_LIST} 
+  WHERE user_id=${id}
+  AND
+  done=${params.done}
+  ${params.done == 1 ? 'ORDER BY doneTime DESC' : 'ORDER BY createTime DESC'} 
+  LIMIT ${start},${params.size};
+  `;
 }

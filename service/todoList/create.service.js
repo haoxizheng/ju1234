@@ -20,6 +20,7 @@ module.exports = function (service) {
   // 新建todo
   service.post(API.POST_TODO_CREATE, async (ctx, next) => {
     ctx.type = 'json';
+    ctx.request.body.user_id = parseInt(ctx.user_id);
     try {
       await mysql(createSqlFactory(ctx.request.body));
       ctx.body = {
@@ -28,7 +29,7 @@ module.exports = function (service) {
         message: 'success create'
       }
     }catch (err){
-      console.log(err)
+      console.log(err);
       ctx.body = {
         code: 500,
         data: 'something err',
@@ -40,7 +41,7 @@ module.exports = function (service) {
 
 
 function createSqlFactory(data) {
-  console.log(data)
+  console.log(data);
   let keys = Object.keys(data),
     values = [];
 

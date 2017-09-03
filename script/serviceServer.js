@@ -17,7 +17,7 @@ const service = require('../service');
 // redis
 const session = require('../middleware/session');
 
-const loginFilter = require('../middleware/loginFilter');
+const todoFilter = require('../middleware/todoFilter');
 
 const app = new Koa();
 const port = 8089;
@@ -27,8 +27,8 @@ app.use(bodyParser());
 // session middleware
 app.use(session());
 
-// 登录过滤器
-app.use(loginFilter());
+// todoList 过滤器
+app.use(todoFilter());
 
 // log
 app.use(async (ctx, next) => {

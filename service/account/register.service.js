@@ -19,12 +19,14 @@ module.exports = function (service) {
   service.post(API.REGISTER, async (ctx, next) => {
     const {account, password, phone} = ctx.request.body;
 
-    // todo 可在插入前进行查询，手机号是否唯一
+    // todo 可在插入前进行查询，手机号是否唯一,用户名是否唯一
     try {
-      await mysql(`INSERT INTO ${tableNames.TB_USER} (nickname,password,phone) VALUES ('${account}','${password}','${phone}');`);
+      const data = await mysql(`INSERT INTO ${tableNames.TB_USER} (nickname,password,phone) VALUES ('${account}','${password}','${phone}');`);
+      log('=========',data)
       const token = ctx.session.createToken();
       let userInfo = {
         nickname: account,
+        id: data.insertId
       };
 
       ctx.type = 'json';
@@ -40,7 +42,6 @@ module.exports = function (service) {
       userInfo.host = ctx.host;
       userInfo.ip = ctx.ip;
       ctx.session.set(token, userInfo)
-
 
     } catch (err) {
       console.log('register error', err);
