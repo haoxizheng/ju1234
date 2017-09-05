@@ -53,8 +53,7 @@ class LoginState {
         res => {
           if(res.data.code === 200){
             localStorage.setItem('token',res.data.data.token);
-            message.success('登录成功');
-            this.redirect();
+            message.success('登录成功',800,this.redirect);
           }else {
             message.error(res.data.message);
           }
