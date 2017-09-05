@@ -6,6 +6,7 @@
  */
 
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 //================================================================
 import NavCard from './components/NavCard';
 //================================================================
@@ -19,15 +20,14 @@ export default class Home extends Component {
   }
 
   render() {
-
-
     return (
       <div className="home">
-        {/*<Link to="/account/login">login</Link>*/}
-        {/*<br/>*/}
-        {/*<a href="http://ju1234.me/todoList/">todo list</a>*/}
-        {/*<br/>*/}
-        {/*<a href="#">blog</a>*/}
+        <header>
+          <div className="header-operate">
+            <Link to="/account/login">login</Link>
+            <Link to="/account/register">sign up</Link>
+          </div>
+        </header>
         <div className="nav-group">
           <NavCard
             img={{
@@ -38,22 +38,6 @@ export default class Home extends Component {
             name="TODO LIST"
             link="http://ju1234.me/todoList"
           />
-          {/*<NavCard*/}
-            {/*img="asdds"*/}
-            {/*navName="TODO LIST"*/}
-          {/*/>*/}
-          {/*<NavCard*/}
-            {/*img="asdds"*/}
-            {/*navName="TODO LIST"*/}
-          {/*/>*/}
-          {/*<NavCard*/}
-            {/*img="asdds"*/}
-            {/*navName="TODO LIST"*/}
-          {/*/>*/}
-          {/*<NavCard*/}
-            {/*img="asdds"*/}
-            {/*navName="TODO LIST"*/}
-          {/*/>*/}
         </div>
       </div>
     )

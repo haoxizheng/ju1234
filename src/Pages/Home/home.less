@@ -1,10 +1,27 @@
-.home {
+@import (reference) "../../style/index";
 
+.home {
+  header{
+    .clear-float;
+    height: 50px;
+    padding: 0 .5rem;
+    font-size: 15px;
+    line-height: 50px;
+
+    > .header-operate{
+      float: right;
+
+      > a:not(:last-child){
+        margin-right: 2em;
+      }
+
+    }
+
+  }
 
 
   .nav-group{
     padding: 0 .5rem;
-    padding-top: 70px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
