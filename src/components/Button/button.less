@@ -1,3 +1,5 @@
+@import "../../style/index";
+
 .button{
   width: 100%;
   background: #fff;
@@ -6,4 +8,30 @@
   margin-top: 20px;
   padding: 8px;
   box-shadow: 0 0 0 0.5px rgba(0, 0, 0, .16), 0 1px 0 rgba(0, 0, 0, .1);
+
+
+  &.primary{
+    background: @main_color;
+    color: #ffffff;
+  }
+
+  &.info{
+    background: @info_color;
+    color: #ffffff;
+  }
+
+  &.success{
+    background: @success_color;
+    color: #ffffff;
+  }
+
+  &.warn{
+    background: @warn_color;
+    color: #ffffff;
+  }
+
+  &.error{
+    background: @error_color;
+    color: #ffffff;
+  }
 }

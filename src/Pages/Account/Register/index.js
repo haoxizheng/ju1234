@@ -6,7 +6,6 @@ import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
 import {Button} from 'jc';
 //========================================================================
-// import message from 'src/utils/message';
 //========================================================================
 import ajax from 'src/utils/request';
 import API from 'root/service/API';
@@ -50,6 +49,7 @@ class Register extends Component {
     const {
       account, password, phone, inputValue,inputState,submitting
     } = this.props.registerState;
+
     return (
       <form className="register-form" onKeyDown={this.keyDownHandle}>
         <div className="ju-logo"><img src="#" alt=""/></div>
@@ -79,6 +79,7 @@ class Register extends Component {
           type="button"
           onClick={this.submitHandle}
           loading={submitting}
+          model="primary"
         >
           注册
         </Button>

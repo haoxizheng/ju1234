@@ -8,9 +8,8 @@
 import React, {Component} from 'react';
 import Loading from 'jc/Loading'
 //========================================================
-
-
 import './button.less'
+
 export default class Button extends Component {
   state = {
     className: ''
@@ -26,14 +25,18 @@ export default class Button extends Component {
 
   // 处理传入的props
   propsParse = (props) => {
-    const {className,children,type,loading} = props;
+    let {className,children,type,loading,model} = props;
+
+    model = model === undefined ? '' : model;
+
+    log('model',model)
 
     let classNameParse = className ? ` ${className}` :'';
 
     this.setState({
       children: loading ? <Loading type="wave"/> : children,
       type: type ? type : 'button',
-      className: 'button' + classNameParse
+      className: model + ' button' + classNameParse
     })
   };
 
