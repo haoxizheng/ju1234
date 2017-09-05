@@ -25,6 +25,7 @@ export default class index extends Component {
           </div>
           <div className="nav-card-title">
             <strong>{name}</strong>
+            <i className="hover-bg"></i>
           </div>
         </a>
       </Card>

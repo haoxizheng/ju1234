@@ -1,11 +1,13 @@
+@import (reference) "../../../../style/index";
+
 @media screen and (min-width: 768px) {
-  .nav-card{
+  .nav-card {
     width: 2rem;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .nav-card{
+  .nav-card {
     width: 4rem;
   }
 }
@@ -28,6 +30,36 @@
     text-align: center;
     padding: .8em 2em;
     color: #333;
+    position: relative;
+
+    strong {
+      position: relative;
+      z-index: 2;
+    }
+
+    i.hover-bg {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -100%;
+      background: linear-gradient(270deg, @main_color, @secondary_color);
+      width: 100%;
+      height: 100%;
+      transition: all .3s;
+    }
+
+  }
+
+  &:hover {
+    .nav-card-title{
+      strong {
+        color: #fff;
+      }
+
+      i.hover-bg {
+        left: 0;
+      }
+    }
   }
 
   > .jc-card-content {
