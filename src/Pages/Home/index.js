@@ -8,7 +8,10 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 //================================================================
+import {Card} from 'jc';
+//================================================================
 import setTitle from 'src/utils/setTitle';
+import './home.less'
 
 
 export default class Home extends Component {
@@ -18,12 +21,16 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div>
+      <div className="home">
         <Link to="/account/login">login</Link>
         <br/>
-        {/*<a href="http://ju1234.me/todoList/">todo list</a>*/}
+        <a href="http://ju1234.me/todoList/">todo list</a>
         <br/>
         <a href="#">blog</a>
+        <Card
+          title="你好"
+          content="content"
+        />
       </div>
     )
   }

@@ -25,7 +25,7 @@ export default class Message extends Component {
   render() {
     const {messageList} = this.props.messageState;
     return (
-      <ul className="message">
+      <ul className="jc-message">
         <Animation>
           {
             messageList.map(item => {

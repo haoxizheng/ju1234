@@ -35,8 +35,8 @@ export default class Button extends Component {
 
     this.setState({
       children: loading ? <Loading type="wave"/> : children,
-      type: type ? type : 'button',
-      className: model + ' button' + classNameParse
+      type: type ? type : 'jc-button',
+      className: model + ' jc-button' + classNameParse
     })
   };
 

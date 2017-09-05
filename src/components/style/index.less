@@ -1,0 +1,54 @@
+//主色调
+@main_color: #208FE6;
+
+//辅助色
+@secondary_color: #80D1F8;
+
+//背景色
+@background_color: #F7F7F7;
+
+//主边框色
+@main_border_color: #e7e7e8;
+
+//输入框边框色
+@input_border_color: #D2D2D2;
+
+//主字体颜色
+@main_font_color: #333;
+
+//成功
+@success_color:  #7CB88F;
+
+//警告
+@warn_color: #f60;
+
+//错误
+@error_color: #E60000;
+
+//信息
+@info_color: @main_color;
+
+
+//显示动画时间
+@animation_enter_time: .7s;
+
+//显示动画时间
+@animation_leave_time: .3s;
+
+
+
+//悬浮阴影
+.shadow{
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.clear-float{
+  &::after,&::before{
+    content: ' ';
+    display: block;
+    clear: both;
+    zoom: 1;
+  }
+}

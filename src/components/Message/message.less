@@ -1,43 +1,46 @@
-@import "../../style/index";
+@import "../style/index";
 
-.message {
-  position: absolute;
-  z-index: 99999999;
-  width: 100%;
-  //bottom: 100%;
-  pointer-events: none;
+.jc{
+  &-message {
+    position: absolute;
+    z-index: 99999999;
+    width: 100%;
+    //bottom: 100%;
+    pointer-events: none;
 
-  > span{
-    > li {
-      width: 100%;
-      position: absolute;
-      text-align: center;
-      padding: 8px 0;
-      pointer-events: none;
+    > span{
+      > li {
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        padding: 8px 0;
+        pointer-events: none;
 
-      span.message-item {
-        .shadow;
-        display: inline-block;
-        padding: 8px 16px;
-        border-radius: 4px;
-        color: #fff;
+        span.message-item {
+          .shadow;
+          display: inline-block;
+          padding: 8px 16px;
+          border-radius: 4px;
+          color: #fff;
+        }
+      }
+
+      .success {
+        background: @success_color;
+      }
+
+      .info {
+        background: @info_color;
+      }
+
+      .warn {
+        background: @warn_color;
+      }
+
+      .error {
+        background: @error_color;
       }
     }
-
-    .success {
-      background: @success_color;
-    }
-
-    .info {
-      background: @info_color;
-    }
-
-    .warn {
-      background: @warn_color;
-    }
-
-    .error {
-      background: @error_color;
-    }
   }
+
 }

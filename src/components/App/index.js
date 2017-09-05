@@ -16,7 +16,7 @@ const Message = lazyLoad(require('bundle-loader?lazy&name=message!../Message'));
 export default class App extends Component {
   render() {
     return (
-      <div className="app">
+      <div className="jc-app">
         {this.props.children}
         <Message/>
       </div>

@@ -19,7 +19,6 @@ class MessageState {
   constructor() {
     this.id = 0;
     this.count = 0;
-    this.height = document.body.clientHeight || document.documentElement.clientHeight;
   }
 
 

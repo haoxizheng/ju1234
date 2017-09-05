@@ -1,0 +1,29 @@
+@import "../style/index";
+
+.jc{
+  &-card{
+    background: #fff;
+    border: 1px solid @main_border_color;
+    border-radius: .5em;
+    transition: all .5s;
+    box-shadow: 0 0 .8em rgba(0,0,0,.1);
+
+
+    &:hover{
+
+    }
+
+    &-title{
+      padding: .8em 1.5em;
+      border-bottom: 1px solid @main_border_color;
+
+      > strong {
+        font-size: 16px;
+      }
+    }
+
+    &-content{
+      padding: .8em 1.5em;
+    }
+  }
+}
