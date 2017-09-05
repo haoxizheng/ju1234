@@ -25,6 +25,7 @@ export default class Account extends Component {
           <Route exact path={pageUrls.REGISTER} component={Register}/>
         </div>
         <footer className="account-footer">
+          <Link to="/">主页</Link>
           <Route exact path={pageUrls.LOGIN} component={ _ => <Link to={pageUrls.REGISTER}>注册</Link>}/>
           <Route exact path={pageUrls.REGISTER} component={ _ => <Link to={pageUrls.LOGIN}>登录</Link>}/>
           <Link to="/">帮助</Link>
