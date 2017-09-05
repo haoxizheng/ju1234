@@ -1,4 +1,4 @@
-@import "../style/index";
+@import (reference) "../style/index";
 
 .jc{
   &-card{
@@ -6,11 +6,12 @@
     border: 1px solid @main_border_color;
     border-radius: .5em;
     transition: all .5s;
-    box-shadow: 0 0 .8em rgba(0,0,0,.1);
+    box-shadow: 0 0 1.2em rgba(0,0,0,.1);
+    overflow: hidden;
 
 
     &:hover{
-
+      box-shadow: 0 0 1.4em rgba(0,0,0,.2);
     }
 
     &-title{

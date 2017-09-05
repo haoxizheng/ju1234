@@ -13,9 +13,8 @@ let baseConfig = require('./webpack.config'),
 
 let developingConfig = baseConfig;
 
-
+// developingConfig.entry.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=50000');
 developingConfig.entry.unshift(hotMiddlewareScript);
-developingConfig.entry.unshift('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000');
 developingConfig.output.publicPath = '/dist/';
 
 developingConfig.devtool = 'source-map';

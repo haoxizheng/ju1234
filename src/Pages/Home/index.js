@@ -6,31 +6,55 @@
  */
 
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 //================================================================
-import {Card} from 'jc';
+import NavCard from './components/NavCard';
 //================================================================
 import setTitle from 'src/utils/setTitle';
-import './home.less'
+import './home.less';
 
 
 export default class Home extends Component {
-  componentWillMount(){
+  componentWillMount() {
     setTitle('ju1234');
   }
 
   render() {
+
+
     return (
       <div className="home">
-        <Link to="/account/login">login</Link>
-        <br/>
-        <a href="http://ju1234.me/todoList/">todo list</a>
-        <br/>
-        <a href="#">blog</a>
-        <Card
-          title="你好"
-          content="content"
-        />
+        {/*<Link to="/account/login">login</Link>*/}
+        {/*<br/>*/}
+        {/*<a href="http://ju1234.me/todoList/">todo list</a>*/}
+        {/*<br/>*/}
+        {/*<a href="#">blog</a>*/}
+        <div className="nav-group">
+          <NavCard
+            img={{
+              src: 'http://otjt19rhq.bkt.clouddn.com/wallhaven-63202.png',
+              alt: 'todo list',
+              title: 'todo list'
+            }}
+            name="TODO LIST"
+            link="http://ju1234.me/todoList"
+          />
+          {/*<NavCard*/}
+            {/*img="asdds"*/}
+            {/*navName="TODO LIST"*/}
+          {/*/>*/}
+          {/*<NavCard*/}
+            {/*img="asdds"*/}
+            {/*navName="TODO LIST"*/}
+          {/*/>*/}
+          {/*<NavCard*/}
+            {/*img="asdds"*/}
+            {/*navName="TODO LIST"*/}
+          {/*/>*/}
+          {/*<NavCard*/}
+            {/*img="asdds"*/}
+            {/*navName="TODO LIST"*/}
+          {/*/>*/}
+        </div>
       </div>
     )
   }

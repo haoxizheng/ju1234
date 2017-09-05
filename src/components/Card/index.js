@@ -28,7 +28,7 @@ export default class Card extends Component {
         }
         <div className="jc-card-content">
           {
-            this.props.content
+            this.props.children
           }
         </div>
       </div>

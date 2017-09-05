@@ -1,0 +1,38 @@
+@media screen and (min-width: 768px) {
+  .nav-card{
+    width: 2rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .nav-card{
+    width: 4rem;
+  }
+}
+
+.nav-card {
+  cursor: pointer;
+  margin-bottom: .3rem;
+
+  &-banner {
+    font-size: 0;
+    > img {
+      user-select: none;
+      font-size: 0;
+      vertical-align: bottom;
+      width: 100%;
+    }
+  }
+
+  &-title {
+    text-align: center;
+    padding: .8em 2em;
+    color: #333;
+  }
+
+  > .jc-card-content {
+    padding: 0;
+  }
+}
+
+

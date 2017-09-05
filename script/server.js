@@ -112,6 +112,7 @@ app.use(proxy(proxyHost, {
 }));
 
 
-app.listen(port, _ => {
+const server = app.listen(port, _ => {
+  server.keepAliveTimeout = 0;
   console.log(`server start at ${port}`)
 });
