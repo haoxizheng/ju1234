@@ -6,7 +6,6 @@
  */
 
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 //================================================================
 import Sider from '../components/Sider';
 import Content from '../components/Content';
@@ -22,9 +21,14 @@ export default class Home extends Component {
 
   render() {
     return (
+    // 小屏通过 layout-show-sider 控制sider显隐
       <div className="layout">
-        <Sider/>
-        <Content/>
+        <div className="layout-sider">
+          <Sider/>
+        </div>
+        <div className="layout-content">
+          <Content/>
+        </div>
       </div>
     )
   }

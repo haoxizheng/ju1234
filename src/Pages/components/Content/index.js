@@ -12,8 +12,8 @@ import './content.less'
 export default class index extends Component {
   render() {
     return (
-      <div className="js-content">
-        <div>index</div>
+      <div className="jc-content">
+        <div>indexindexindexindexindexindexindexindexindexindexindexindexindexindexindexindexindex</div>
       </div>
     )
   }

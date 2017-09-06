@@ -1,12 +1,66 @@
 @import (reference) "../../style/index";
 
+@sider-width: 270px;
+
+
 .layout {
   width: 100%;
   height: 100%;
+  position: relative;
 
-  display: flex;
+  > div{
+    position: absolute;
+    height: 100%;
+    transition: all .5s;
+  }
 
-  > div + div{
-    flex: 1;
+  &-sider{
+    width: @sider-width;
+    min-width: @sider-width;
+    left: 0;
+    z-index: 2;
+
+    > div{
+      position: absolute;
+      transition: all .5s;
+      left: 0;
+    }
+  }
+
+  &-content{
+    background: #fff;
+    left: @sider-width;
+    right: 0;
+    z-index: 1;
+  }
+}
+
+@media screen and (max-width: 645px){
+  .layout{
+    &-sider{
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,.05);
+      > div{
+        left: -@sider-width;
+      }
+    }
+
+    &-content{
+      left: 0;
+    }
+  }
+
+
+  .layout-show-sider{
+    .layout-sider{
+      > div{
+        left: 0;
+      }
+    }
+
+    .layout-content{
+      filter: blur(1px);
+    }
   }
 }
