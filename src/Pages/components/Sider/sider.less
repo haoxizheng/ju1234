@@ -9,11 +9,11 @@
     background: #f3f4f5;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     > nav{
       flex: 1;
     }
-
 
     &-operator{
       height: 40px;
@@ -35,5 +35,26 @@
         }
       }
     }
+
+
+    button.sider-close{
+      position: absolute;
+      background: transparent;
+      font-size: 40px;
+      left: 20px;
+      color: @error_color;
+      display: none;
+    }
   }
 }
+
+
+
+@media screen and (max-width: @screen_width_division){
+.jc-sider{
+  button.sider-close{
+    display: inline-block;
+  }
+}
+}
+

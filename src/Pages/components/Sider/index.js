@@ -31,6 +31,7 @@ export default class Sider extends Component {
             <Link to={pageUrl.REGISTER}>注册</Link>
           </div>
         </div>
+        <button className="sider-close">&times;</button>
       </div>
     )
   }
