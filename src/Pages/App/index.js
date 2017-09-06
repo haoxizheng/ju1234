@@ -6,12 +6,12 @@
  */
 
 import React, {Component} from 'react';
-import lazyLoad from 'src/utils/lazyLoad';
+import lazyLoad from 'src/utils/lazyLoad/index';
 // ==============================================================================================================
 import './app.less';
 
 
-const Message = lazyLoad(require('bundle-loader?lazy&name=message!../Message'));
+const Message = lazyLoad(require('bundle-loader?lazy&name=message!../../components/Message'));
 
 export default class App extends Component {
   render() {

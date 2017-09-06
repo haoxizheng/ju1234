@@ -13,10 +13,10 @@ import lazyLoad from 'src/utils/lazyLoad';
 import * as pageUrls from 'src/config/pageUrls';
 
 // 顶层结构
-const App = lazyLoad(require('bundle-loader?lazy&name=app!../components/App'));
+const App = lazyLoad(require('bundle-loader?lazy&name=app!../Pages/App'));
 
-// 主页
-const Home = lazyLoad(require('bundle-loader?lazy&name=home!../Pages/Home'));
+// 侧栏加右边栏布局
+const Layout = lazyLoad(require('bundle-loader?lazy&name=home!../Pages/Layout'));
 
 // 登录
 const Account = lazyLoad(require('bundle-loader?lazy&name=account!../Pages/Account'));
@@ -35,7 +35,7 @@ export default class Root extends Component {
       >
         <App>
           <Switch>
-            <Route exact path={pageUrls.HOME} component={Home}/>
+            <Route exact path={pageUrls.HOME} component={Layout}/>
 
             {/* 用户账户、登录、登出 */}
             <Route exact path={pageUrls.ACCOUNT} component={Account}/>
