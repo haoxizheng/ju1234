@@ -40,7 +40,7 @@
     &-sider{
       left: 0;
       width: 100%;
-      background: rgba(0,0,0,.05);
+      pointer-events: none;
       > div{
         left: -@sider-width;
       }
@@ -54,6 +54,8 @@
 
   .layout-show-sider{
     .layout-sider{
+      background: rgba(0,0,0,.05);
+      pointer-events: auto;
       > div{
         left: 0;
       }
