@@ -9,8 +9,11 @@
 import loginState from './account.state/login.state';
 import registerState from './account.state/register.state';
 
+// 公用state
+import siderState from './common.state/sider.state';
 
 export default {
   loginState,
-  registerState
+  registerState,
+  siderState
 }

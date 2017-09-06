@@ -22,6 +22,7 @@ class SiderState{
   @action visibleControl = (operate) => {
     if(operate === 'open') this.isVisible = true;
     else if(operate === 'close') this.isVisible = false;
+    else throw new Error('argument[0] must be "open" or "close"')
   }
 }
 

@@ -7,6 +7,7 @@
 
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {inject, observer} from 'mobx-react';
 // ====================================================================
 import Avatar from '../Avatar';
 import SiderNav from '../SiderNav';
@@ -14,8 +15,22 @@ import SiderNav from '../SiderNav';
 import * as pageUrl from 'src/config/pageUrls';
 import './sider.less';
 
-// todo 登录状态最底部显示退出，未登录则显示 登录注册
-export default class Sider extends Component {
+
+function mapStateToProps(store) {
+  return {
+    siderVisibleControl: store.siderState.visibleControl
+  }
+}
+
+@inject(mapStateToProps)
+@observer
+class Sider extends Component {
+
+  // 小屏下 关闭sider
+  closeSider = () => {
+    this.props.siderVisibleControl('close');
+  };
+
   render() {
     return (
       <div className="jc-sider">
@@ -31,8 +46,13 @@ export default class Sider extends Component {
             <Link to={pageUrl.REGISTER}>注册</Link>
           </div>
         </div>
-        <button className="sider-close">&times;</button>
+        <button
+          className="sider-close"
+          onClick={this.closeSider}
+        >&times;</button>
       </div>
     )
   }
 }
+
+export default Sider;

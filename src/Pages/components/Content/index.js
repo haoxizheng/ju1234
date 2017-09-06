@@ -6,15 +6,31 @@
  */
 
 import React, {Component} from 'react';
+import {inject, observer} from 'mobx-react';
 // =======================================================
-import './content.less'
+import './content.less';
 
-export default class index extends Component {
+function mapStateToProps(store) {
+  return {
+    siderVisibleControl: store.siderState.visibleControl
+  }
+}
+
+@inject(mapStateToProps)
+@observer
+class Content extends Component {
+
+  openSider = () => {
+    this.props.siderVisibleControl('open')
+  };
+
   render() {
     return (
       <div className="jc-content">
-        <div>indexindexindexindexindexindexindexindexindexindexindexindexindexindexindexindexindex</div>
+        <div onClick={this.openSider}>openopenopenopenopenopenopenopenopenopen</div>
       </div>
     )
   }
 }
+
+export default Content;

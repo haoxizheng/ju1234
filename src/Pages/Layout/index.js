@@ -6,6 +6,8 @@
  */
 
 import React, {Component} from 'react';
+import {observer,inject} from 'mobx-react'
+import classNames from 'classnames';
 //================================================================
 import Sider from '../components/Sider';
 import Content from '../components/Content';
@@ -13,21 +15,35 @@ import Content from '../components/Content';
 import setTitle from 'src/utils/setTitle';
 import './layout.less';
 
+function mapStateToProps(store) {
+  return {
+    siderIsVisible: store.siderState.isVisible,
+    siderVisibleControl: store.siderState.visibleControl
+  }
+}
 
-export default class Home extends Component {
+
+@inject(mapStateToProps)
+@observer
+class Home extends Component {
   componentWillMount() {
     setTitle('ju1234');
   }
 
+  // 小屏下sider展开的覆盖层点击事件
+  siderCoverClickhandle = (e) => {
+    if(e.target.classList.contains('layout-sider')){
+      this.props.siderVisibleControl('close');
+    }
+  };
+
   render() {
+    const className = classNames('layout',{
+      'layout-show-sider': this.props.siderIsVisible
+    });
     return (
-    // 小屏通过 layout-show-sider 控制sider显隐
-      <div className="layout layout-show-sider">
-        <div className="layout-sider" onClick={(e) => {
-          if(e.target.classList.contains('layout-sider')){
-            // close dock
-          }
-        }}>
+      <div className={className}>
+        <div className="layout-sider" onClick={this.siderCoverClickhandle}>
           <Sider/>
         </div>
         <div className="layout-content">
@@ -37,3 +53,5 @@ export default class Home extends Component {
     )
   }
 }
+
+export default Home;
