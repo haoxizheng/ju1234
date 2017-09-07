@@ -14,6 +14,9 @@ export const LOGIN = '/account/login';
 // 注册页面
 export const REGISTER = '/account/register';
 
-
+// 账户
 export const ACCOUNT = [LOGIN,REGISTER];
+
+
+export const LAYOUT = [HOME];
 

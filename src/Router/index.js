@@ -17,7 +17,7 @@ import * as pageUrls from 'src/config/pageUrls';
 const App = lazyLoad(require('bundle-loader?lazy&name=app!../Pages/App'));
 
 // 侧栏加右边栏布局
-const Layout = lazyLoad(require('bundle-loader?lazy&name=home!../Pages/Layout'));
+const Layout = lazyLoad(require('bundle-loader?lazy&name=layout!../Pages/Layout'));
 
 // 登录
 const Account = lazyLoad(require('bundle-loader?lazy&name=account!../Pages/Account'));
@@ -49,7 +49,7 @@ class Root extends Component {
       >
         <App>
           <Switch>
-            <Route exact path={pageUrls.HOME} component={Layout}/>
+            <Route exact path={pageUrls.LAYOUT} component={Layout}/>
 
             {/* 用户账户、登录、登出 */}
             <Route exact path={pageUrls.ACCOUNT} component={Account}/>

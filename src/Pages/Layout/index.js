@@ -6,14 +6,21 @@
  */
 
 import React, {Component} from 'react';
-import {observer,inject} from 'mobx-react'
+import {inject, observer} from 'mobx-react';
+import {Route} from 'react-router-dom';
 import classNames from 'classnames';
 //================================================================
 import Sider from '../components/Sider';
 import Content from '../components/Content';
 //================================================================
 import setTitle from 'src/utils/setTitle';
+import * as pageUrls from 'src/config/pageUrls';
+import lazyLoad from 'src/utils/lazyLoad';
 import './layout.less';
+
+// 页面组件
+const Home = lazyLoad(require('bundle-loader?lazy&name=home!../Home'));
+
 
 function mapStateToProps(store) {
   return {
@@ -23,10 +30,9 @@ function mapStateToProps(store) {
   }
 }
 
-
 @inject(mapStateToProps)
 @observer
-class Home extends Component {
+class Layout extends Component {
   componentWillMount() {
     setTitle('ju1234');
     this.props.siderInit();
@@ -34,13 +40,13 @@ class Home extends Component {
 
   // 小屏下sider展开的覆盖层点击事件
   siderCoverClickhandle = (e) => {
-    if(e.target.classList.contains('layout-sider')){
+    if (e.target.classList.contains('layout-sider')) {
       this.props.siderVisibleControl('close');
     }
   };
 
   render() {
-    const className = classNames('layout',{
+    const className = classNames('layout', {
       'layout-show-sider': this.props.siderIsVisible
     });
     return (
@@ -50,7 +56,7 @@ class Home extends Component {
         </div>
         <div className="layout-content">
           <Content>
-            asdasdsd
+            <Route exact path={pageUrls.HOME} component={Home}/>
           </Content>
         </div>
       </div>
@@ -58,4 +64,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Layout;
