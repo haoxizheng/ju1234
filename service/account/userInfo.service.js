@@ -7,6 +7,9 @@
 
 const API = require('../API');
 
+/**
+ * (name = "token",value = "token",required = true,paramType = "header",dataType = "string")
+ */
 module.exports = function (service) {
   service.get(API.GET_USER_INFO,async (ctx,next) => {
     const userToken =  ctx.request.headers.token;
