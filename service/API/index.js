@@ -20,4 +20,8 @@ module.exports = {
   PUT_TODO_DONE: todoId => `/api/todo/done/${todoId}`,
   GET_TODO_LIST: '/api/todo/list',
   PUT_TODO_DETAIL: todoId => `/api/todo/edit/${todoId}`,
+
+
+  // =====================系统相关===========================
+  GET_SIDER_LINK: '/api/sider/link'
 };

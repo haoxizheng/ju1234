@@ -17,5 +17,8 @@ module.exports = function () {
   // todoList
   require('./todoList')(service);
 
+  // 系统相关
+  require('./system')(service);
+
   return service.routes()
 };
