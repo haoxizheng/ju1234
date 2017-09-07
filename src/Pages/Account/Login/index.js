@@ -28,9 +28,8 @@ class Login extends Component {
   };
 
   componentWillMount(){
-    log('login page props',this.props);
     // 用户进入login页面，即视为退出登录
-    this.props.userState.logout();
+    // this.props.userState.logout();
     setTitle('登录');
   }
 
