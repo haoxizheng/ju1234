@@ -11,6 +11,8 @@ module.exports = {
   LOGIN: '/api/login',
   LOGOUT: '/api/logout',
   REGISTER: '/api/register',
+  GET_LOGIN_STATUS: '/api/isLogin',
+
 
   // =====================todo list===========================
   POST_TODO_CREATE: '/api/todo/create',

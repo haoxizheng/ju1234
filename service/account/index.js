@@ -14,4 +14,7 @@ module.exports = function (service) {
 
   // 注册接口
   require('./register.service')(service);
+
+  // 登录状态验证
+  require('./isLogin.service')(service);
 };
