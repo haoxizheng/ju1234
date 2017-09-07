@@ -24,7 +24,7 @@
     border-radius: 4px;
     overflow: hidden;
 
-    &:hover,&:focus{
+    &:hover,&:focus,&:active,&:hover{
       background: #fff;
       border: 1px solid @main_color;
 
@@ -48,6 +48,7 @@
 
     &:hover,&:focus,&:active{
       display: block;
+      background: @main_color;
     }
 
     &.search-searching{
@@ -70,7 +71,7 @@
 @media screen and (max-width: @screen_width_division) {
   .jc-search{
     > input{
-      &:focus,&:active{
+      &:focus,&:active,&:visited,&:hover{
         & + span{
           &.search-pending{
             background: @main_color;
@@ -86,6 +87,10 @@
 
       &.search-pending{
         background: transparent;
+        &:hover{
+          background: @main_color;
+          color: #fff;
+        }
       }
     }
   }

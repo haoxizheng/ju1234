@@ -39,6 +39,14 @@ class UserState {
     }
   }
 
+  // todo 确认组件编写
+  // 退出登录
+  @action logout = () => {
+    localStorage.removeItem('token');
+    ajax.Put(API.LOGOUT).subscribe();
+    this.isLogin = false;
+  };
+
   // 是否登录验证
   @action loginValidity = () => {
     ajax.Get(API.GET_LOGIN_STATUS).subscribe(

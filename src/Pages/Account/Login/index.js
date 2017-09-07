@@ -30,8 +30,7 @@ class Login extends Component {
   componentWillMount(){
     log('login page props',this.props);
     // 用户进入login页面，即视为退出登录
-    this.logout();
-    this.props.userState.isLogin = false;
+    this.props.userState.logout();
     setTitle('登录');
   }
 
@@ -42,18 +41,13 @@ class Login extends Component {
   // 按下键盘enter事件
   keyDownHandle = (e) => {
     if(e.keyCode === 13){
-      this.props.loginState.submitHandle(this.context.router);
+      this.submitHandle()
     }
   };
 
   // 提交表单
   submitHandle = () => {
     this.props.loginState.submitHandle(this.context.router,this.props.userState);
-  };
-
-  logout = () => {
-    localStorage.removeItem('token');
-    ajax.Put(API.LOGOUT).subscribe()
   };
 
   render() {

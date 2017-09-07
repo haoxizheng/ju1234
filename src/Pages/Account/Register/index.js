@@ -15,7 +15,8 @@ import './register-form.less';
 function mapPropsToState(store) {
   return {
     registerState: store.registerState,
-    submitHandle: store.registerState.submitHandle
+    submitHandle: store.registerState.submitHandle,
+    userState: store.userState
   }
 }
 
@@ -43,7 +44,7 @@ class Register extends Component {
 
   // 提交表单
   submitHandle = () => {
-    this.props.submitHandle(this.context.router);
+    this.props.submitHandle(this.context.router,this.props.userState);
   };
 
   render() {

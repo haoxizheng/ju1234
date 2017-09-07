@@ -14,7 +14,7 @@ module.exports = {
   GET_LOGIN_STATUS: '/api/isLogin',
   GET_USER_INFO: '/api/user/info',
 
-  // =====================todo list===========================
+  // =====================todolist===========================
   POST_TODO_CREATE: '/api/todo/create',
   GET_TODO_DETAIL: todoId => `/api/todo/${todoId}`,
   PUT_TODO_DONE: todoId => `/api/todo/done/${todoId}`,

@@ -45,7 +45,7 @@ class RegisterState {
   };
 
   // 表单提交事件
-  @action submitHandle = (router) => {
+  @action submitHandle = (router,userState) => {
     if (this.submitting || !this.formValidity())
       return false;
 
@@ -61,7 +61,8 @@ class RegisterState {
           message.success('创建成功');
           // window.token = res.data.data.token;
           localStorage.setItem('token',res.data.data.token);
-          router.history.push(pageUrls.HOME)
+          router.history.push(pageUrls.HOME);
+          userState.isLogin = true;;
         }else {
           message.error(res.data.message)
         }

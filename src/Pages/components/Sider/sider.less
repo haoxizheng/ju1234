@@ -17,12 +17,13 @@
 
     &-operator{
       height: 40px;
-
-      .sider-not-login{
+      > div{
         width: 100%;
         height: 100%;
         line-height: 40px;
+      }
 
+      .sider-not-login{
         > a{
           display: inline-block;
           width: 50%;
@@ -31,6 +32,37 @@
 
           &:first-child{
             border-right: 1px solid @main_border_color;
+          }
+        }
+      }
+
+      .sider-is-login{
+        text-align: center;
+        cursor: pointer;
+
+        &:hover,&:active,&:focus{
+          > button{
+            .logout-icon{
+              background-image: url("http://ovutpacix.bkt.clouddn.com/logout-active.svg");
+            }
+          }
+        }
+
+        > button{
+          background: transparent;
+          font-size: 14px;
+          color: @error_color;
+          position: relative;
+
+          .logout-icon{
+            display: block;
+            position: absolute;
+            left: -40px;
+            width: 40px;
+            height: 40px;
+            background: transparent center center no-repeat;
+            background-image: url("http://ovutpacix.bkt.clouddn.com/logout-default.svg");
+            background-size: 60% 60%;
           }
         }
       }
