@@ -15,7 +15,8 @@ import './login-form.less';
 
 function mapPropsToState(store) {
   return {
-    loginState: store.loginState
+    loginState: store.loginState,
+    userState: store.userState
   }
 }
 
@@ -27,8 +28,10 @@ class Login extends Component {
   };
 
   componentWillMount(){
+    log('login page props',this.props);
     // 用户进入login页面，即视为退出登录
     this.logout();
+    this.props.userState.isLogin = false;
     setTitle('登录');
   }
 
@@ -45,7 +48,7 @@ class Login extends Component {
 
   // 提交表单
   submitHandle = () => {
-    this.props.loginState.submitHandle(this.context.router);
+    this.props.loginState.submitHandle(this.context.router,this.props.userState);
   };
 
   logout = () => {

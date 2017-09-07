@@ -38,8 +38,8 @@ class LoginState {
     this.password = e.target.value;
   };
 
-  // 登录表单提交
-  @action submitHandle = async (router) => {
+  // 登录表单提交 userState 登录成功修改用户登录状态并重新获取用户信息
+  @action submitHandle = async (router,userState) => {
     if (this.submitting) return false;
     const isPass = this.validity(message);
     if (!isPass) return false;
@@ -53,7 +53,8 @@ class LoginState {
         res => {
           if(res.data.code === 200){
             localStorage.setItem('token',res.data.data.token);
-            message.success('登录成功',800,this.redirect);
+            userState.isLogin = true;
+            message.success('登录成功',800,this.redirect.bind(null,router));
           }else {
             message.error(res.data.message);
           }
@@ -82,14 +83,14 @@ class LoginState {
 
 
   // 登陆成功跳转
-  redirect(){
+  redirect(router){
     const appId = parseInt(qs.parse(location.search).appId);
 
     // todoList
     if(appId === 0){
       location.href = '/todoList';
     }else {
-      location.href = '/';
+      router.history.push(pageUrls.HOME)
     }
   }
 }
