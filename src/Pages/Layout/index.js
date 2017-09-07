@@ -18,7 +18,8 @@ import './layout.less';
 function mapStateToProps(store) {
   return {
     siderIsVisible: store.siderState.isVisible,
-    siderVisibleControl: store.siderState.visibleControl
+    siderVisibleControl: store.siderState.visibleControl,
+    siderInit: store.siderState.init
   }
 }
 
@@ -28,6 +29,7 @@ function mapStateToProps(store) {
 class Home extends Component {
   componentWillMount() {
     setTitle('ju1234');
+    this.props.siderInit();
   }
 
   // 小屏下sider展开的覆盖层点击事件
@@ -47,7 +49,9 @@ class Home extends Component {
           <Sider/>
         </div>
         <div className="layout-content">
-          <Content/>
+          <Content>
+            asdasdsd
+          </Content>
         </div>
       </div>
     )

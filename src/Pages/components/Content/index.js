@@ -7,6 +7,8 @@
 
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
+import {Search} from 'jc';
+// =======================================================
 // =======================================================
 import './content.less';
 
@@ -27,7 +29,21 @@ class Content extends Component {
   render() {
     return (
       <div className="jc-content">
-        <div onClick={this.openSider}>openopenopenopenopenopenopenopenopenopen</div>
+        <div className="jc-content-header">
+          <div onClick={this.openSider} className="sider-open-btn">
+
+          </div>
+          <div className="content-header-search">
+            <Search/>
+          </div>
+        </div>
+        <main>
+          <div className="main-wrap">
+            {
+              this.props.children
+            }
+          </div>
+        </main>
       </div>
     )
   }

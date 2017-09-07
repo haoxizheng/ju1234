@@ -1,7 +1,54 @@
-.jc{
-  &-content{
+@import (reference) "../../../style/index";
+
+.jc {
+  &-content {
     width: 100%;
     height: 100%;
     background: #fff;
+    display: flex;
+    flex-direction: column;
+
+    &-header {
+      padding: 6px 8px;
+      display: flex;
+
+      > div.sider-open-btn {
+        display: none;
+      }
+
+      > div.content-header-search {
+        flex: 1;
+      }
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .main-wrap {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: @screen_width_division) {
+  .jc {
+    &-content {
+      &-header {
+        > div.sider-open-btn {
+          width: 35px;
+          height: 35px;
+          margin-right: 1em;
+          display: block;
+          background: url("http://ovutpacix.bkt.clouddn.com/more%20%281%29.svg");
+          background-size: 100% 100%;
+        }
+
+      }
+    }
   }
 }

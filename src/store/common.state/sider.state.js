@@ -14,6 +14,10 @@ class SiderState{
   // 小屏幕下sider是否可见
   @observable isVisible = false;
 
+
+  @action init = () => {
+    this.isVisible = false;
+  };
   /**
    *
    * @param operate [open/close]

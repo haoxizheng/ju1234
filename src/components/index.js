@@ -21,5 +21,7 @@ export message from './Message/message';
 // 卡片组件
 export Card from './Card';
 
+// 搜索组件
+export Search from './Search';
 
 

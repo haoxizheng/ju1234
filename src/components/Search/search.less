@@ -1,0 +1,92 @@
+@import (reference) "../style/index";
+
+.jc-search{
+  width: 100%;
+  display: flex;
+  min-height: 35px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover{
+    > input{
+      background: #fff;
+      border: 1px solid @main_color;
+    }
+  }
+
+  > input{
+    display: inline-block;
+    flex: 1;
+    background: @background_color;
+    padding: 0 1em;
+    font-size: 14px;
+    border-radius: 4px;
+    overflow: hidden;
+
+    &:hover,&:focus{
+      background: #fff;
+      border: 1px solid @main_color;
+
+      + span{
+        display: block;
+      }
+    }
+  }
+
+  > span{
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    line-height: 35px;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 0 1em;
+    cursor: pointer;
+
+    &:hover,&:focus,&:active{
+      display: block;
+    }
+
+    &.search-searching{
+      background: transparent;
+      &::after{
+        color: #333;
+        content: 'x';
+      }
+    }
+
+    &.search-pending{
+      background: @main_color;
+      &::after{
+        content: '搜索';
+      }
+    }
+  }
+}
+
+@media screen and (max-width: @screen_width_division) {
+  .jc-search{
+    > input{
+      &:focus,&:active{
+        & + span{
+          &.search-pending{
+            background: @main_color;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    > span{
+      display: block;
+      color: #757575;
+
+      &.search-pending{
+        background: transparent;
+      }
+    }
+  }
+}
