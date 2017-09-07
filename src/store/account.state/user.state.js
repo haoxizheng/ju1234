@@ -7,6 +7,8 @@
 
 import {action, computed, observable} from 'mobx';
 // ======================================================================
+import {message} from 'jc';
+// ======================================================================
 import API from 'root/service/API';
 import ajax from 'src/utils/request';
 
@@ -26,7 +28,7 @@ class UserState {
     return this.loginStaus;
   };
 
-
+  
   set isLogin(value) {
     if(value){
       this.loginStaus = true;
@@ -51,7 +53,20 @@ class UserState {
 
   // 获取用户信息
   @action getUserInfo = () => {
-    log('begin get user info')
+    ajax.Get(API.GET_USER_INFO)
+      .retry(2)
+      .subscribe(
+        res => {
+          log(res);
+          if(res.data.code === 200){
+            this.nickname = res.data.data.nickname;
+            this.avatar = res.data.data.avatar;
+          }
+        },
+        err => {
+          log(err)
+        }
+      )
   };
 
   // 用户没有登录或者用户退出登录对信息进行初始化

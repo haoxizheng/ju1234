@@ -5,6 +5,7 @@
 import React, {Component} from 'react';
 import {Link, Route} from 'react-router-dom';
 import lazyLoad from 'src/utils/lazyLoad';
+import {observer} from 'mobx-react'
 //========================================================================
 //========================================================================
 import * as pageUrls from 'src/config/pageUrls';
@@ -14,8 +15,8 @@ import './account.less';
 const Login = lazyLoad(require('bundle-loader?lazy&name=login!./Login'));
 const Register = lazyLoad(require('bundle-loader?lazy&name=login!./Register'));
 
-
-export default class Account extends Component {
+@observer
+class Account extends Component {
 
   render() {
     return (
@@ -35,3 +36,4 @@ export default class Account extends Component {
   }
 }
 
+export default Account;

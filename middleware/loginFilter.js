@@ -7,7 +7,7 @@
 
 
 
-function loginFilter() {
+module.exports = function loginFilter() {
   return async function (ctx,next) {
     log(ctx.url.startsWith('/api/todo'));
     if(ctx.url.startsWith('/api/todo')){
@@ -31,8 +31,7 @@ function loginFilter() {
       await next()
     }
   }
-}
+};
 
 
-module.exports = loginFilter;
 

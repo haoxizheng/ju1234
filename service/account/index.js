@@ -17,4 +17,7 @@ module.exports = function (service) {
 
   // 登录状态验证
   require('./isLogin.service')(service);
+
+  // 获取用户信息
+  require('./userInfo.service')(service);
 };

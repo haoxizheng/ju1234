@@ -8,6 +8,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import lazyLoad from 'src/utils/lazyLoad';
+import {observer,inject} from 'mobx-react';
 //==============================================================================================================
 //==============================================================================================================
 import * as pageUrls from 'src/config/pageUrls';
@@ -21,12 +22,25 @@ const Layout = lazyLoad(require('bundle-loader?lazy&name=home!../Pages/Layout'))
 // 登录
 const Account = lazyLoad(require('bundle-loader?lazy&name=account!../Pages/Account'));
 
+function mapStateToProps(store) {
+  return {
+    loginValidity: store.userState.loginValidity
+  }
+}
 
-export default class Root extends Component {
+@inject(mapStateToProps)
+@observer
+class Root extends Component {
+
+  componentDidMount(){
+    // 登录状态初始化
+    this.props.loginValidity()
+  }
 
   tokenValidity = () => {
 
   };
+
 
   render() {
     return (
@@ -45,5 +59,8 @@ export default class Root extends Component {
     )
   }
 }
+
+
+export default Root;
 
 

@@ -12,7 +12,7 @@ module.exports = {
   LOGOUT: '/api/logout',
   REGISTER: '/api/register',
   GET_LOGIN_STATUS: '/api/isLogin',
-
+  GET_USER_INFO: '/api/user/info',
 
   // =====================todo list===========================
   POST_TODO_CREATE: '/api/todo/create',
