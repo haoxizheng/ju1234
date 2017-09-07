@@ -28,7 +28,7 @@ class UserState {
     return this.loginStaus;
   };
 
-  
+
   set isLogin(value) {
     if(value){
       this.loginStaus = true;
