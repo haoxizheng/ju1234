@@ -1,0 +1,57 @@
+@import (reference) "../../style/index";
+
+
+.todo-list-wrap{
+  height: 100%;
+  font-size: 14px;
+  position: relative;
+
+  .todo-container{
+    width: 6rem;
+    height: 90%;
+    background: #fff;
+    padding: 6px 8px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+
+
+    > ul{
+      > li{
+        border-bottom: 1px solid @main_border_color;
+
+        &:first-child{
+          border-top: 1px solid @main_border_color;
+        }
+      }
+    }
+  }
+
+  .crete-todo-btn{
+    width: 60px;
+    height: 60px;
+    background: @secondary_color;
+    position: fixed;
+    bottom: .5rem;
+    right: .5rem;
+    font-size: 5em;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 60px;
+    box-shadow: 0 0 5px rgba(0,0,0,.1),0 0 10px rgba(0,0,0,.3);
+  }
+}
+
+
+@media screen and (max-width: @pad_width) {
+  .todo-list-wrap{
+    .todo-container{
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

@@ -20,6 +20,7 @@ import './layout.less';
 
 // 页面组件
 const Home = lazyLoad(require('bundle-loader?lazy&name=home!../Home'));
+const TodoList = lazyLoad(require('bundle-loader?lazy&name=todoList!../TodoList'));
 
 
 function mapStateToProps(store) {
@@ -57,6 +58,7 @@ class Layout extends Component {
         <div className="layout-content">
           <Content>
             <Route exact path={pageUrls.HOME} component={Home}/>
+            <Route exact path={pageUrls.TODOLIST} component={TodoList}/>
           </Content>
         </div>
       </div>

@@ -240,6 +240,7 @@ textarea {
   margin: 0;
   /* 2 */
   border-width: 0;
+  background: transparent;
 }
 
 /**
@@ -607,4 +608,9 @@ button:active, button:visited ,button:focus{
 
 * {
   box-sizing: border-box;
+}
+
+
+a:focus {
+  text-decoration: none;
 }

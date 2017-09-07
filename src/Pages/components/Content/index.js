@@ -38,11 +38,9 @@ class Content extends Component {
           </div>
         </div>
         <main>
-          <div className="main-wrap">
-            {
-              this.props.children
-            }
-          </div>
+          {
+            this.props.children
+          }
         </main>
       </div>
     )
