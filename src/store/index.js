@@ -8,6 +8,7 @@
 // 账户系统
 import loginState from './account.state/login.state';
 import registerState from './account.state/register.state';
+import userState from './account.state/user.state';
 
 // 公用state
 import siderState from './common.state/sider.state';
@@ -15,5 +16,6 @@ import siderState from './common.state/sider.state';
 export default {
   loginState,
   registerState,
-  siderState
+  siderState,
+  userState
 }

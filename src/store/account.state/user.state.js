@@ -1,5 +1,5 @@
 /**
- * intro：       user.state
+ * intro：       用户信息、状态管理
  * description： user.state
  * author：      jufei
  * date：        2017/9/7
@@ -11,30 +11,55 @@ import API from 'root/service/API';
 import ajax from 'src/utils/request';
 
 
-class UserState{
-  @observable isLogin = false;
-  @observable nickname = 'hello world';
+class UserState {
+  @observable loginStaus = false;
+  @observable nickname = '';
   @observable avatar = '';
 
-  constructor(){
+  constructor() {
     this.defaultNickname = 'hello world';
+    this.defaultAvatar = 'hello world';
   }
 
-  @action loginValidity = () => {
-    ajax.get(API.GET_LOGIN_STATUS).subscribe(
-      res => {
 
+  @computed get isLogin() {
+    return this.loginStaus;
+  };
+
+
+  set isLogin(value) {
+    if(value){
+      this.loginStaus = true;
+      this.getUserInfo()
+    }else {
+      this.loginStaus = false;
+      this.initialUserInfo()
+    }
+  }
+
+  // 是否登录验证
+  @action loginValidity = () => {
+    ajax.Get(API.GET_LOGIN_STATUS).subscribe(
+      res => {
+        this.isLogin = res.data.data.isLogin;
       },
       err => {
-
-      },
-      _ => {
-
+        this.isLogin = false;
       }
     )
   };
 
+  // 获取用户信息
   @action getUserInfo = () => {
-
+    log('begin get user info')
   };
+
+  // 用户没有登录或者用户退出登录对信息进行初始化
+  @action initialUserInfo = () => {
+    this.nickname = this.defaultNickname;
+    this.avatar = '';
+  }
 }
+
+
+export default new UserState();
