@@ -21,7 +21,7 @@ module.exports = function (service) {
 
     let data;
     try {
-      data = await mysql(`SELECT password,id FROM ${tableNames.TB_USER} WHERE email="${account}" OR phone="${account}";`);
+      data = await mysql(`SELECT password,id FROM ${tableNames.TB_USER} WHERE nickname="${account}" OR phone="${account}";`);
     } catch (err) {
       ctx.body = {
         code: 500,
