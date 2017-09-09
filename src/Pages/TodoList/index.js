@@ -7,6 +7,8 @@
 
 import React, {Component} from 'react';
 // ======================================================
+import {Modal} from 'jc';
+// ======================================================
 import setTitle from 'src/utils/setTitle';
 import lazyLoad from 'src/utils/lazyLoad';
 import './todoList.less';
@@ -25,13 +27,13 @@ class TodoList extends Component {
       <div className="todo-list-wrap">
         <div className="todo-container">
           <ul>
+            <TodoBar done/>
             <TodoBar/>
             <TodoBar/>
             <TodoBar/>
             <TodoBar/>
             <TodoBar/>
-            <TodoBar/>
-            <TodoBar/>
+            <TodoBar done/>
             <TodoBar/>
             <TodoBar/>
             <TodoBar/>
@@ -45,6 +47,9 @@ class TodoList extends Component {
           className="crete-todo-btn"
         >
         </button>
+        <Modal
+          title="todo edit"
+        />
       </div>
     )
   }

@@ -8,8 +8,6 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="yes" name="apple-touch-fullscreen">
   <meta content="telephone=no,email=no" name="format-detection">
-  <meta name="x5-fullscreen" content="true">
-  <meta name="full-screen" content="yes">
   <title>ju1234</title>
 </head>
 <body>

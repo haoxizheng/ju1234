@@ -24,4 +24,7 @@ export Card from './Card';
 // 搜索组件
 export Search from './Search';
 
+// 模态框
+export Modal from './Modal';
+
 

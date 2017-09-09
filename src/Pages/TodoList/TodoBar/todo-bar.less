@@ -1,10 +1,44 @@
+@import (reference) "../../../style/index";
+
 .todo-bar{
   padding: .5em .8em;
   > span,> button{
     display: block;
   }
 
-  > span.todo-desc{
-    flex: 1;
+  .todo-content{
+    display: flex;
+    align-items: center;
+
+    p{
+      font-size: 14px;
+    }
+
+    time{
+      font-size: 12px;
+      color: @main_border_color;
+    }
+
+    > div{
+      flex: 1;
+    }
+
+    .todo-doing ~ button{
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+  }
+}
+
+
+
+@media screen and (max-width: @phone_width){
+  .todo-bar{
+    .todo-content{
+      > button{
+        display: none;
+      }
+    }
   }
 }

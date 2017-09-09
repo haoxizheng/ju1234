@@ -24,7 +24,7 @@ module.exports = function (app) {
 
     try {
       const list = (await mysql(sqlFactory(params,ctx.user_id)));
-      const total = (await mysql(`SELECT count(*) AS count FROM ${tableName.TODO_LIST} WHERE done=${params.done} and user_id=${ctx.user_id};`))[0].count;
+      const total = (await mysql(`SELECT count(*) AS count FROM ${tableName.TODO_LIST} WHERE done=${params.done} AND user_id=${ctx.user_id};`))[0].count;
       ctx.body = {
         code: 200,
         data: {
