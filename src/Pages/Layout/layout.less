@@ -42,6 +42,7 @@
       width: 100%;
       pointer-events: none;
       > div{
+        transform: translate3d(0,0,0);
         left: -@sider-width;
       }
     }
@@ -51,12 +52,14 @@
     }
   }
 
-
   .layout-show-sider{
     .layout-sider{
       background: rgba(0,0,0,.2);
       pointer-events: auto;
+
+
       > div{
+        transform: translate3d(0,0,0);
         left: 0;
       }
     }
@@ -66,3 +69,4 @@
     }
   }
 }
+
