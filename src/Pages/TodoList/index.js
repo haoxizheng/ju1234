@@ -47,9 +47,6 @@ class TodoList extends Component {
           className="crete-todo-btn"
         >
         </button>
-        <Modal
-          title="todo edit"
-        />
       </div>
     )
   }

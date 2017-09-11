@@ -15,8 +15,6 @@ const Koa = require('koa'),
   shell = require('shelljs');
 
 
-
-
 const routes = require('../routes');
 
 
@@ -82,14 +80,14 @@ if (isDevelopment) {
 
 } else {
   router.get(routes, async (ctx, next) => {
-    console.log('production')
+    console.log('production');
     ctx.response.type = 'html';
     ctx.body = fs.createReadStream(path.resolve(__dirname, '../public/dist/index.html'))
   });
 }
 
 
-router.get('/asd/restart',async (ctx,next) => {
+router.get('/asd/restart', async (ctx, next) => {
   shell.exec(`forever restartall`);
   ctx.type = 'json';
   ctx.body = {
@@ -106,7 +104,7 @@ const proxyHost = 'http://localhost:8089/';
 app.use(proxy(proxyHost, {
   filter: ctx => {
     const isPass = /^\/api\/?/.test(ctx.url);
-    if(isPass) console.log('proxy:' + ctx.url + ' => ' + proxyHost + ctx.url);
+    if (isPass) console.log('proxy:' + ctx.url + ' => ' + proxyHost + ctx.url);
     return isPass
   },
 }));
@@ -116,3 +114,4 @@ const server = app.listen(port, _ => {
   server.keepAliveTimeout = 0;
   console.log(`server start at ${port}`)
 });
+
