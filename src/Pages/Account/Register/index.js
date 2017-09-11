@@ -4,12 +4,10 @@
 
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
-import {Button} from 'jc';
 //========================================================================
+import {Input,Button} from 'jc';
 //========================================================================
-import ajax from 'src/utils/request';
-import API from 'root/service/API';
-import setTitle from 'src/utils/setTitle'
+import setTitle from 'src/utils/setTitle';
 import './register-form.less';
 
 function mapPropsToState(store) {
@@ -27,55 +25,55 @@ class Register extends Component {
     router: React.PropTypes.object.isRequired
   };
 
-  componentWillMount(){
+  componentWillMount() {
     setTitle('注册')
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.props.registerState.init()
   }
 
   // 按下键盘enter事件
   keyDownHandle = (e) => {
-    if(e.keyCode === 13){
+    if (e.keyCode === 13) {
       this.submitHandle()
     }
   };
 
   // 提交表单
   submitHandle = () => {
-    this.props.submitHandle(this.context.router,this.props.userState);
+    this.props.submitHandle(this.context.router, this.props.userState);
   };
 
   render() {
     log(this.props)
     const {
-      account, password, phone, inputValue,inputState,submitting
+      account, password, phone, inputValue, inputState, submitting
     } = this.props.registerState;
 
     return (
       <form className="register-form" onKeyDown={this.keyDownHandle}>
         <div className="ju-logo"><img src="#" alt=""/></div>
         <h3>SIGN UP</h3>
-        <input
+        <Input
           type="text"
           placeholder="Account"
           value={account}
-          onChange={inputValue.bind(this,'account')}
+          onChange={inputValue.bind(this, 'account')}
           className={inputState.account}
         />
-        <input
+        <Input
           type="number"
           placeholder="Phone"
           value={phone}
-          onChange={inputValue.bind(this,'phone')}
+          onChange={inputValue.bind(this, 'phone')}
           className={inputState.phone}
         />
-        <input
+        <Input
           type="password"
           placeholder="Password"
           value={password}
-          onChange={inputValue.bind(this,'password')}
+          onChange={inputValue.bind(this, 'password')}
           className={inputState.password}
         />
         <Button

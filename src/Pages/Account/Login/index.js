@@ -4,9 +4,8 @@
 
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
-import {Button} from 'jc';
 //========================================================================
-// import message from 'src/utils/message';
+import {Button,Input} from 'jc';
 //========================================================================
 import ajax from 'src/utils/request';
 import API from 'root/service/API';
@@ -60,13 +59,14 @@ class Login extends Component {
       <form className="login-form" onKeyDown={this.keyDownHandle}>
         <div className="ju-logo"><img src="#" alt=""/></div>
         <h3>ju1234</h3>
-        <input
+        <Input
           type="text"
           placeholder="account"
           value={account}
           onChange={changeAccount}
         />
-        <input
+        <Input
+          className="asdasd"
           type="password"
           placeholder="password"
           value={password}

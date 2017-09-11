@@ -15,8 +15,10 @@ export default class TodoCreate extends Component {
     return (
       <Modal
         title="新建事件"
-        visible={true}
-      />
+        visible={false}
+      >
+        <input type="text"/>
+      </Modal>
     )
   }
 }

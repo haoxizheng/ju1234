@@ -27,4 +27,5 @@ export Search from './Search';
 // 模态框
 export Modal from './Modal';
 
-
+// 输入框
+export Input from './Input';

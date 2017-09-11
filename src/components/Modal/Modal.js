@@ -42,7 +42,9 @@ export default class Modal extends Component {
           <Card
             title={this.props.title}
           >
-            asdds
+            {
+              this.props.children
+            }
           </Card>
         </div>
       </div>
