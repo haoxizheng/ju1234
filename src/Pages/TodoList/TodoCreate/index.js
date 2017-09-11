@@ -7,7 +7,7 @@
 
 import React, {Component} from 'react';
 // ======================================================
-import {Modal} from 'jc';
+import {Input,Modal} from 'jc';
 // ======================================================
 
 export default class TodoCreate extends Component {
@@ -15,9 +15,12 @@ export default class TodoCreate extends Component {
     return (
       <Modal
         title="新建事件"
-        visible={false}
+        visible={true}
       >
-        <input type="text"/>
+        <Input
+          type="text"
+          placeholder="请输入事件简介"
+        />
       </Modal>
     )
   }

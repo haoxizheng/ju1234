@@ -29,9 +29,8 @@ export default class Modal extends Component {
             'jc-modal-hide': !this.props.visible
           })
         }
-
-        onClick={this.close}
       >
+        <div className="jc-modal-cover" onClick={this.close}></div>
         <div
           className="jc-modal-content"
           style={{
