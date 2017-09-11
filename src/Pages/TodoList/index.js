@@ -15,6 +15,7 @@ import './todoList.less';
 
 
 const TodoBar  = lazyLoad(require('bundle-loader?lazy&name=todoBar!./TodoBar'));
+const TodoCreate  = lazyLoad(require('bundle-loader?lazy&name=todoCreate!./TodoCreate'));
 
 class TodoList extends Component {
 
@@ -47,6 +48,7 @@ class TodoList extends Component {
           className="crete-todo-btn"
         >
         </button>
+        <TodoCreate/>
       </div>
     )
   }

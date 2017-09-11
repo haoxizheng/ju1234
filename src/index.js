@@ -15,8 +15,6 @@ import './utils/remPolyfill'
 import './style/index.less';
 import './style/default.css';
 
-
-
 window.log = console.log.bind(console);
 
 render((

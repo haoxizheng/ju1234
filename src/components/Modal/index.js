@@ -6,21 +6,33 @@
  */
 
 import React, {Component} from 'react';
-// =================================================================
-import {Card} from 'jc';
-// =================================================================
-import './modal.less'
+import {render} from 'react-dom';
+// ================================================
+import ModalComponent from './Modal';
+
+
+const modalContainerId = 'jcModal';
 
 export default class Modal extends Component {
+  componentDidMount(){
+    let jsModalElement = document.getElementById(modalContainerId);
+    if(jsModalElement){
+      this.initModal()
+    }else {
+      jsModalElement = document.createElement('div');
+      jsModalElement.id = modalContainerId;
+      document.body.appendChild(jsModalElement);
+      this.initModal()
+    }
+  }
+
+  initModal = () => {
+    render((
+      <ModalComponent {...this.props}/>
+    ),document.getElementById(modalContainerId));
+  };
+
   render() {
-    return (
-      <div className="jc-modal">
-        {/*<Card*/}
-          {/*title="niaho"*/}
-        {/*>*/}
-          {/*<div>modal</div>*/}
-        {/*</Card>*/}
-      </div>
-    )
+    return false
   }
 }
