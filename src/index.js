@@ -10,7 +10,7 @@ import {Provider} from 'mobx-react';
 import Root from './Router';
 import store from './store';
 // ==============================================================================================================
-import './utils/remPolyfill'
+import './utils/remPolyfill';
 // ==============================================================================================================
 import './style/index.less';
 import './style/default.css';
