@@ -9,6 +9,10 @@ const API = require('../API/index'),
   mysql = require('../../utils/mysql/index'),
   tableNames = require('../../utils/mysql/tableName');
 
+/**
+ * (name = "account",value = "用户名或手机号",required = true,paramType = "body",dataType = "string")
+ * (name = "password",value = "密码",required = true,paramType = "body",dataType = "string")
+ */
 module.exports = function (service) {
   service.post(API.LOGIN, async (ctx, next) => {
     const {account, password} = ctx.request.body;
