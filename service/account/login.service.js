@@ -5,15 +5,51 @@
  * date：        2017/8/16
  */
 
+/**
+ * @api {POST} /api/login 登录
+ * @apiName login
+ * @apiGroup Account
+ *
+ * @apiParam {String} account 用户名或用户手机号
+ * @apiParam {String} password 用户密码
+ *
+ * @apiSuccess (success) {String} token 登录token
+ * @apiSuccess (success) {Object} userInfo 用户信息
+ * @apiSuccess (success) {String} message some thing
+ *
+ * @apiSuccess (userInfo) {String} avatar 头像链接
+ * @apiSuccess (userInfo) {String} createTime 创建时间
+ * @apiSuccess (userInfo) {String} email 用户邮箱
+ * @apiSuccess (userInfo) {String} lastLogin 最后登录时间
+ * @apiSuccess (userInfo) {String} nickname 用户昵称
+ * @apiSuccess (userInfo) {String} phone 用户电话
+ * @apiSuccess (userInfo) {String} trueName 用户真实姓名
+ *
+ * @apiSuccessExample Success-Response:
+ *     {
+ *        code: 200,
+ *        data: {
+ *          token: '8312a5731bf',
+ *          userInfo: {
+ *               avatar: 'http://asdasds.jpg',
+ *               createTime: '2017-1-1',
+ *               email: 'dem@qq.com',
+ *               lastLogin: '2017-2-1',
+ *               nickname: 'username',
+ *               phone: '18881818181'，
+ *               trueName: '张三'
+ *          }
+ *        },
+ *        message: 'ok'
+ *     }
+ *
+ */
+
 
 const API = require('../API/index'),
   mysql = require('../../utils/mysql/index'),
   tableNames = require('../../utils/mysql/tableName');
 
-/**
- * (name = "account",value = "用户名或手机号",required = true,paramType = "body",dataType = "string")
- * (name = "password",value = "密码",required = true,paramType = "body",dataType = "string")
- */
 module.exports = function (service) {
   service.post(API.LOGIN, async (ctx, next) => {
     const {account, password} = ctx.request.body;

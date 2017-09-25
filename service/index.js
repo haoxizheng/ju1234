@@ -5,10 +5,8 @@
  * date：        2017/8/16
  */
 
+
 const service = require('koa-router')();
-
-
-
 
 module.exports = function () {
   // 账号相关 登录注册

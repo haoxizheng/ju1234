@@ -1,8 +1,3 @@
-/**
- * Created by jufei on 2017/7/30.
- */
-
-
 module.exports = function (service) {
   // 新建
   require('./create.service')(service);
