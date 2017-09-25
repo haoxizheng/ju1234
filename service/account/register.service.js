@@ -15,6 +15,7 @@ const API = require('../API'),
  * (name = "password",value = "密码",required = true,paramType = "body",dataType = "string")
  * (name = "phone",value = "手机号",required = true,paramType = "body",dataType = "string")
  */
+
 module.exports = function (service) {
   service.post(API.REGISTER, async (ctx, next) => {
     const {account, password, phone} = ctx.request.body;
@@ -22,7 +23,6 @@ module.exports = function (service) {
     // todo 可在插入前进行查询，手机号是否唯一,用户名是否唯一
     try {
       const data = await mysql(`INSERT INTO ${tableNames.TB_USER} (nickname,password,phone) VALUES ('${account}','${password}','${phone}');`);
-      log('=========',data)
       const token = ctx.session.createToken();
       let userInfo = {
         nickname: account,
