@@ -12,6 +12,7 @@ const mysql = require('../../utils/mysql'),
  * (name = "instancy",value = "是否紧急",required = true,paramType = "query",dataType = "number")
  * (name = "id",value = "todoItem id",required = true,paramType = "params",dataType = "number")
  */
+
 module.exports = function (app) {
   app.put(API.PUT_TODO_DETAIL(':id'), async (ctx, next) => {
     ctx.type = 'json';
